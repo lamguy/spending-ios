@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (strong, nonatomic) IBOutlet UITextView *note;
 @property (strong, nonatomic) IBOutlet UIView *buttonGrid;
-@property (strong, nonatomic) IBOutlet UICollectionView *keyGrid;
+@property (strong, nonatomic) IBOutlet UIView *numGrid;
 @property (weak, nonatomic) IBOutlet UIButton *star;
 @property (strong, nonatomic) IBOutlet UIButton *list;
 @end

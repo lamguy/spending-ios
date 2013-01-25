@@ -88,6 +88,7 @@
 		8C930BFF16B2E3F2007BAC32 /* PSTGridLayoutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BF116B2E3F2007BAC32 /* PSTGridLayoutItem.m */; };
 		8C930C0016B2E3F2007BAC32 /* PSTGridLayoutRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BF316B2E3F2007BAC32 /* PSTGridLayoutRow.m */; };
 		8C930C0116B2E3F2007BAC32 /* PSTGridLayoutSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BF516B2E3F2007BAC32 /* PSTGridLayoutSection.m */; };
+		8C930C0416B2FE11007BAC32 /* NumGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930C0316B2FE10007BAC32 /* NumGrid.m */; };
 		8CB4CA7A16AD605D00E5B058 /* Spend.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4CA7916AD605D00E5B058 /* Spend.m */; };
 		8CB4CAA316AD9BC000E5B058 /* cat_computer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CA9E16AD9BC000E5B058 /* cat_computer@2x.png */; };
 		8CB4CAA416AD9BC000E5B058 /* cat_gas@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CA9F16AD9BC000E5B058 /* cat_gas@2x.png */; };
@@ -209,6 +210,8 @@
 		8C930BF316B2E3F2007BAC32 /* PSTGridLayoutRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutRow.m; sourceTree = "<group>"; };
 		8C930BF416B2E3F2007BAC32 /* PSTGridLayoutSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTGridLayoutSection.h; sourceTree = "<group>"; };
 		8C930BF516B2E3F2007BAC32 /* PSTGridLayoutSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTGridLayoutSection.m; sourceTree = "<group>"; };
+		8C930C0216B2FE10007BAC32 /* NumGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumGrid.h; sourceTree = "<group>"; };
+		8C930C0316B2FE10007BAC32 /* NumGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumGrid.m; sourceTree = "<group>"; };
 		8CB4CA7816AD605C00E5B058 /* Spend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spend.h; sourceTree = "<group>"; };
 		8CB4CA7916AD605D00E5B058 /* Spend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spend.m; sourceTree = "<group>"; };
 		8CB4CA9E16AD9BC000E5B058 /* cat_computer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cat_computer@2x.png"; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				8C19F69116B1DFBD00CC1E09 /* Record.m */,
 				8C930BA416B1EBDD007BAC32 /* SpendRecordCell.h */,
 				8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */,
+				8C930C0216B2FE10007BAC32 /* NumGrid.h */,
+				8C930C0316B2FE10007BAC32 /* NumGrid.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -613,6 +618,7 @@
 				8C930BFF16B2E3F2007BAC32 /* PSTGridLayoutItem.m in Sources */,
 				8C930C0016B2E3F2007BAC32 /* PSTGridLayoutRow.m in Sources */,
 				8C930C0116B2E3F2007BAC32 /* PSTGridLayoutSection.m in Sources */,
+				8C930C0416B2FE11007BAC32 /* NumGrid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

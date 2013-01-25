@@ -10,16 +10,20 @@
 #import <QuartzCore/QuartzCore.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "RecordCellController.h"
+#import "NumGrid.h"
 #import "sqlite3.h"
 #import "Record.h"
 
 static const NSUInteger kNumSection = 40;
 
 CGSize CollectionViewCellSize = { .height = 52, .width = 52 };
+CGSize NumCellSize = { .height= 44, .width=72};
 NSString *CollectionViewCellIdentifier = @"RecordCell";
+NSString *KeyCellIdentifier = @"KeyCell";
 
 @interface AddSpendViewController () {
     PSUICollectionView *_gridView;
+    PSUICollectionView *_numKeyGrid;
     
     NSArray *arrayOfCatImages;
     NSArray *arrayOfCatLabel;
@@ -33,13 +37,6 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
 @end
 
 @implementation AddSpendViewController
-
-@synthesize note = _note;
-@synthesize name;
-@synthesize buttonGrid;
-@synthesize keyGrid;
-@synthesize star;
-@synthesize list;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,6 +52,7 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
     [super viewDidLoad];
     
     [self createGridView];
+    [self createNumBoard];
     
     
     arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing", @"cat_drink", @"cat_transit", @"cat_movie", @"cat_movies", nil];
@@ -90,7 +88,7 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
     
     arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @".", @"7", @"8", @"9", @"C", nil];
     
-    [self.keyGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
+    [self.numGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
     
     
     [self.note setDelegate:self];
@@ -100,9 +98,30 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
     [self.note setTextColor:[UIColor lightGrayColor]];
 }
 
+- (void)createNumBoard
+{
+    
+    PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
+    _numKeyGrid = [[PSUICollectionView alloc] initWithFrame:[self.numGrid bounds] collectionViewLayout:layout];
+    _numKeyGrid.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    _numKeyGrid.delegate = self;
+    _numKeyGrid.dataSource = self;
+    _numKeyGrid.allowsSelection = NO;
+    _numKeyGrid.allowsMultipleSelection = NO;
+    _numKeyGrid.backgroundColor = [UIColor clearColor];
+    _numKeyGrid.frame = CGRectMake(10, 15, 300,150); // still doesnt work
+    
+    [_numKeyGrid registerClass:[NumGrid class] forCellWithReuseIdentifier:KeyCellIdentifier];
+    
+    
+    [self.numGrid addSubview:_numKeyGrid];
+    
+}
 
 
-- (void)createGridView {
+
+- (void)createGridView
+{
     PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
     _gridView = [[PSUICollectionView alloc] initWithFrame:[self.buttonGrid bounds] collectionViewLayout:layout];
     _gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -118,18 +137,29 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
 #pragma mark -
 #pragma mark Collection View Data Source
 
-- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {    
-    RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    [cell setBackgroundColor:[UIColor colorWithRed:248.0/255 green:248.0/255 blue:248.0/255 alpha:1.0]];
-    cell.layer.cornerRadius = 4; // rounded corners
-    [cell.image setImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]]];
+    if (collectionView == _gridView) {
+        
+        RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+        
+        [cell setBackgroundColor:[UIColor colorWithRed:248.0/255 green:248.0/255 blue:248.0/255 alpha:1.0]];
+        cell.layer.cornerRadius = 4; // rounded corners
+        [cell.image setImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]]];
+        
+        [cell.label setText:[arrayOfCatLabel objectAtIndex:indexPath.item]];
+        [cell.label setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
+        [cell.label setTextColor:[UIColor lightGrayColor]];
+        return cell;
+    }
+    else
+    {
+        NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
+        [cell.key setTitle:@"1" forState:UIControlStateNormal];
+        return cell;
+    }
     
-    [cell.label setText:[arrayOfCatLabel objectAtIndex:indexPath.item]];
-    [cell.label setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
-    [cell.label setTextColor:[UIColor lightGrayColor]];
     
-    return cell;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(PSUICollectionView *)collectionView
@@ -138,11 +168,57 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
 }
 
 - (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CollectionViewCellSize;
+    
+    if (collectionView == _gridView)
+    {
+        return CollectionViewCellSize;
+    }
+    else
+    {
+        return NumCellSize;
+    }
+    
 }
 
-- (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section {
-    return [arrayOfCatLabel count];
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (collectionView == _gridView) {
+        
+    }
+    else
+    {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    
+}
+
+- (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if (collectionView == _gridView) {
+        return [arrayOfCatLabel count];
+    }
+    else
+    {
+        return [arrayOfKeys count];
+    }
+}
+
+- (CGFloat)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    if (collectionView == _gridView) {
+    }
+    else
+    {
+        return 4;
+    }
+}
+
+- (CGFloat)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    if (collectionView == _gridView) {
+    }
+    else
+    {
+        return 5;
+    }
 }
 
 #pragma mark -
@@ -151,18 +227,36 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ - %@", NSStringFromSelector(_cmd), indexPath);
     
-    RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (collectionView == _gridView) {
+        
+        RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+        
+        cell.label.textColor = [UIColor whiteColor];
+    }
+    else
+    {
+        
+    }
     
-    cell.label.textColor = [UIColor whiteColor];
+    
     
 }
 
 - (void)collectionView:(PSUICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ - %@", NSStringFromSelector(_cmd), indexPath);
     
-    RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (collectionView == _gridView) {
+        
+        RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+        
+        cell.label.textColor = [UIColor lightGrayColor];
+    }
+    else
+    {
+        
+    }
     
-    cell.label.textColor = [UIColor lightGrayColor];
+    
 }
 
 #pragma mark - IBActions
