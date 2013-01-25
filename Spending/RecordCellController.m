@@ -22,7 +22,7 @@ static CGFloat SubTitleLabelHeight = 24;
         _image.contentMode = UIViewContentModeScaleAspectFit;
         
         _label = [[UILabel alloc] init];
-        _label.textColor = [UIColor whiteColor];
+        
         _label.textAlignment = UITextAlignmentCenter;
         _label.backgroundColor = [UIColor clearColor];
         

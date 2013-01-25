@@ -150,6 +150,11 @@ NSString *CollectionViewCellIdentifier = @"RecordCell";
 
 - (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%@ - %@", NSStringFromSelector(_cmd), indexPath);
+    
+    RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.label.textColor = [UIColor whiteColor];
+    
 }
 
 - (void)collectionView:(PSUICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
