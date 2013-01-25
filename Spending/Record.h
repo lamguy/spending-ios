@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Record : NSObject
+@property(assign)NSInteger ID;
 @property(assign)NSInteger cat_id;
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, strong)NSString *note;

@@ -64,12 +64,14 @@
         if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
             NSLog(@"prepared to pull");
             while (sqlite3_step(query_stmt)==SQLITE_ROW) {
+                NSInteger ID=sqlite3_column_int(query_stmt, 0);
                 NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
                 NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
                 NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
                 
                 Record *record = [[Record alloc]init];
                 
+                [record setID:ID];
                 [record setName:name];
                 [record setNote:note];
                 [record setAmount:[amount intValue]];
@@ -148,7 +150,22 @@
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
+        Record *record = [arrayOfRecord objectAtIndex:indexPath.row];
+        [self deleteRecord:[NSString stringWithFormat:@"DELETE FROM SPENDS WHERE ID=%d", record.ID]];
+        
+        [arrayOfRecord removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.recordTableView reloadData];
+    }
+}
+
+-(void)deleteRecord:(NSString *)deleteQuery
+{
+    char *error;
+    
+    if (sqlite3_exec(recordDB, [deleteQuery UTF8String], NULL, NULL, &error)==SQLITE_OK) {
+        NSLog(@"Record deleted");
     }
 }
 
