@@ -12,4 +12,5 @@
 @property(assign)NSInteger cat_id;
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, strong)NSString *note;
+@property(assign)NSInteger amount;
 @end

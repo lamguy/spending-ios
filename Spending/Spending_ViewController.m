@@ -66,11 +66,13 @@
             while (sqlite3_step(query_stmt)==SQLITE_ROW) {
                 NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
                 NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
+                NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
                 
                 Record *record = [[Record alloc]init];
                 
                 [record setName:name];
                 [record setNote:note];
+                [record setAmount:[amount intValue]];
                 
                 [arrayOfRecord addObject:record];
                 
@@ -125,6 +127,11 @@
     
     cell.spendName.text = aRecord.name;
     cell.spendLocation.text = aRecord.note;
+    
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc]init];
+    [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    cell.spendAmount.text = [currencyFormatter stringFromNumber:[NSNumber numberWithInt:aRecord.amount]];
     
     return cell;
 }

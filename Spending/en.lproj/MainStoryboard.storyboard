@@ -72,7 +72,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpt-lE-brs">
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="216" id="VJ0-e0-lNg"/>
+                                                                        <constraint firstAttribute="width" constant="200" id="ftF-gs-SER"/>
                                                                         <constraint firstAttribute="height" constant="21" id="ibw-19-CGK"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
@@ -89,8 +89,8 @@
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Amount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCk-WY-bj6">
                                                                     <constraints>
+                                                                        <constraint firstAttribute="width" constant="83" id="5tR-JH-mj4"/>
                                                                         <constraint firstAttribute="height" constant="21" id="hH2-6S-vBg"/>
-                                                                        <constraint firstAttribute="width" constant="67" id="nOF-Z0-Ukt"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,17 +101,17 @@
                                                         </view>
                                                         <constraints>
                                                             <constraint firstItem="Bpt-lE-brs" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="20" type="default" id="GLb-Ak-kcU"/>
-                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="MRC-a1-XgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="HeO-fX-PUd"/>
                                                             <constraint firstItem="WCk-WY-bj6" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="11" id="JRF-Te-XOd"/>
-                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="Bpt-lE-brs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Jbx-xp-MSx"/>
                                                             <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="20" type="default" id="bx7-Bp-cnk"/>
+                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="Bpt-lE-brs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="fmA-iZ-2sC"/>
+                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="MRC-a1-XgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gvq-eb-0w7"/>
                                                             <constraint firstItem="Bpt-lE-brs" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="2" id="rWp-Kj-pEo"/>
                                                             <constraint firstItem="MRC-a1-XgC" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="20" type="default" id="zzC-5r-KQp"/>
                                                         </constraints>
                                                         <connections>
+                                                            <outlet property="spendAmount" destination="WCk-WY-bj6" id="sal-G9-2nD"/>
                                                             <outlet property="spendLocation" destination="MRC-a1-XgC" id="wWU-sf-xGP"/>
                                                             <outlet property="spendName" destination="Bpt-lE-brs" id="WZC-Vz-kmE"/>
-                                                            <outlet property="spendPrice" destination="WCk-WY-bj6" id="WaT-Va-d9j"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -549,9 +549,9 @@
         <class className="SpendRecordCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
             <relationships>
+                <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spendPrice" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="Spending_ViewController" superclassName="UIViewController">

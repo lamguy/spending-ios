@@ -11,6 +11,6 @@
 @interface SpendRecordCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *spendName;
 @property (strong, nonatomic) IBOutlet UILabel *spendLocation;
-@property (strong, nonatomic) IBOutlet UILabel *spendPrice;
+@property (strong, nonatomic) IBOutlet UILabel *spendAmount;
 
 @end
