@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NumGrid : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet UIButton *key;
+@property (strong, nonatomic) IBOutlet UILabel *key;
 @end

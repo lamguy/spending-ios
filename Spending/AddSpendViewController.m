@@ -14,8 +14,6 @@
 #import "sqlite3.h"
 #import "Record.h"
 
-static const NSUInteger kNumSection = 40;
-
 CGSize CollectionViewCellSize = { .height = 52, .width = 52 };
 CGSize NumCellSize = { .height= 44, .width=72};
 NSString *CollectionViewCellIdentifier = @"RecordCell";
@@ -155,7 +153,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
     else
     {
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
-        [cell.key setTitle:@"1" forState:UIControlStateNormal];
+        [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
+        [cell.key setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
+        [cell.key setTextColor:[UIColor lightGrayColor]];
         return cell;
     }
     
@@ -182,14 +182,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (collectionView == _gridView) {
-        
-    }
-    else
-    {
-        return UIEdgeInsetsMake(0, 0, 0, 0);
-    }
-    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (NSInteger)collectionView:(PSUICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -204,7 +197,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
 }
 
 - (CGFloat)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    if (collectionView == _gridView) {
+    if (collectionView == _gridView)
+    {
+        return 10;
     }
     else
     {
@@ -213,7 +208,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
 }
 
 - (CGFloat)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    if (collectionView == _gridView) {
+    if (collectionView == _gridView)
+    {
+        return 10;
     }
     else
     {

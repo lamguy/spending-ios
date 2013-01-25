@@ -431,6 +431,45 @@
         <image name="list.png" width="8" height="10"/>
         <image name="tip.png" width="13" height="19"/>
     </resources>
+    <classes>
+        <class className="AddSpendViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSpendViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="action" name="starPressed:"/>
+                <relationship kind="outlet" name="buttonGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="list" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="numGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="star" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="GraphingViewController" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SpendRecordCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Spending_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Spending_ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addNewSpend" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="graphScroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="recordTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

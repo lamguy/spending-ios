@@ -27,10 +27,9 @@ static CGFloat SubTitleLabelHeight = 24;
         self.layer.shadowRadius = 1;
         self.layer.shadowOpacity = 0.2;
         
-        _key = [[UIButton alloc] init];
-        [[_key layer] setCornerRadius:4];
-        _key.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:31];
-        _key.titleLabel.textColor = [UIColor blackColor];
+        _key = [[UILabel alloc] init];
+        
+        _key.textAlignment = UITextAlignmentCenter;
         
         [self.contentView addSubview:_key];
     }
