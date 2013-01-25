@@ -98,7 +98,7 @@
         //create db here
         if(sqlite3_open(dbPath, &recordDB)==SQLITE_OK)
         {
-            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS SPENDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, CAT_ID INTEGER, NAME TEXT, NOTE TEXT)";
+            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS SPENDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, CAT_ID INTEGER, NAME TEXT, NOTE TEXT, ADDRESS TEXT, AMOUNT INETEGER)";
             sqlite3_exec(recordDB, sql_stmt, NULL, NULL, &error);
             sqlite3_close(recordDB);
         }
