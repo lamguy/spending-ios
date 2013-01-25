@@ -88,7 +88,6 @@
 		8CB4CAB016AD9E6A00E5B058 /* cat_computer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAE16AD9E6A00E5B058 /* cat_computer.png */; };
 		8CB4CAB116AD9E6A00E5B058 /* cat_general.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */; };
 		8CB4CB0916ADAD7200E5B058 /* AddSpendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */; };
-		8CDE200916ADB635002163EF /* TapkuLibrary.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8CDE200816ADB635002163EF /* TapkuLibrary.bundle */; };
 		8CDE201616ADB719002163EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDE201516ADB719002163EF /* QuartzCore.framework */; };
 		8CDE201816ADB71E002163EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDE201716ADB71E002163EF /* MapKit.framework */; };
 		8CDE202B16ADC1A2002163EF /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE202A16ADC1A2002163EF /* GraphingViewController.m */; };
@@ -187,7 +186,6 @@
 		8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_general.png; sourceTree = "<group>"; };
 		8CB4CB0716ADAD7200E5B058 /* AddSpendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSpendViewController.h; sourceTree = "<group>"; };
 		8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSpendViewController.m; sourceTree = "<group>"; };
-		8CDE200816ADB635002163EF /* TapkuLibrary.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TapkuLibrary.bundle; path = ../libraries/tapkulibrary/src/TapkuLibrary.bundle; sourceTree = "<group>"; };
 		8CDE201516ADB719002163EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8CDE201716ADB71E002163EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8CDE202916ADC1A2002163EF /* GraphingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingViewController.h; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				8CDE201716ADB71E002163EF /* MapKit.framework */,
 				8CDE201516ADB719002163EF /* QuartzCore.framework */,
 				8C617B3D16AD1A5C000FC1DC /* Spending */,
-				8CDE200816ADB635002163EF /* TapkuLibrary.bundle */,
 				8C617B3616AD1A5B000FC1DC /* Frameworks */,
 				8C617B3416AD1A5B000FC1DC /* Products */,
 			);
@@ -467,7 +464,6 @@
 				8CB4CAAD16AD9E6000E5B058 /* cat_shopping.png in Resources */,
 				8CB4CAB016AD9E6A00E5B058 /* cat_computer.png in Resources */,
 				8CB4CAB116AD9E6A00E5B058 /* cat_general.png in Resources */,
-				8CDE200916ADB635002163EF /* TapkuLibrary.bundle in Resources */,
 				8C53CF0C16AE0062003C2BA7 /* bg.png in Resources */,
 				8C53CF0E16AE0077003C2BA7 /* bg@2x.png in Resources */,
 				8C53CF1016AE07CA003C2BA7 /* search_bar.png in Resources */,
