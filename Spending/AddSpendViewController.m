@@ -14,6 +14,7 @@
 #import <KKGridView/KKIndexPath.h>
 #import "RecordCellController.h"
 #import "sqlite3.h"
+#import "Record.h"
 
 static const NSUInteger kNumSection = 40;
 
@@ -22,7 +23,6 @@ static const NSUInteger kNumSection = 40;
     NSArray *arrayOfCatLabel;
     
     NSArray *arrayOfKeys;
-    
     NSMutableArray *arrayOfRecord;
     sqlite3 *recordDB;
     NSString *dbPathString;
@@ -198,6 +198,11 @@ static const NSUInteger kNumSection = 40;
         
         if (sqlite3_exec(recordDB, insert_spending_stmt, NULL, NULL, &error)==SQLITE_OK) {
             NSLog(@"Spend record added");
+            
+            Record *record = [[Record alloc] init];
+            
+            [record setName:self.name.text];
+            [record setNote:self.note.text];
         }
         
         if(sqlite3_close(recordDB)==SQLITE_OK)
