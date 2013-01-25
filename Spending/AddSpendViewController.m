@@ -9,16 +9,18 @@
 #import "AddSpendViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import <KKGridView/KKGridView.h>
-#import <KKGridView/KKGridViewCell.h>
-#import <KKGridView/KKIndexPath.h>
 #import "RecordCellController.h"
 #import "sqlite3.h"
 #import "Record.h"
 
 static const NSUInteger kNumSection = 40;
 
+CGSize CollectionViewCellSize = { .height = 52, .width = 52 };
+NSString *CollectionViewCellIdentifier = @"RecordCell";
+
 @interface AddSpendViewController () {
+    PSUICollectionView *_gridView;
+    
     NSArray *arrayOfCatImages;
     NSArray *arrayOfCatLabel;
     
@@ -30,9 +32,7 @@ static const NSUInteger kNumSection = 40;
 
 @end
 
-@implementation AddSpendViewController {
-    KKGridView *_gridView;
-}
+@implementation AddSpendViewController
 
 @synthesize note = _note;
 @synthesize name;
@@ -54,9 +54,7 @@ static const NSUInteger kNumSection = 40;
 {
     [super viewDidLoad];
     
-    [[self catCollectionView]setDataSource:self];
-    [[self catCollectionView]setDelegate:self];
-    [[self catCollectionView]setAllowsSelection:YES];
+    [self createGridView];
     
     
     arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing", @"cat_drink", @"cat_transit", @"cat_movie", @"cat_movies", nil];
@@ -69,6 +67,9 @@ static const NSUInteger kNumSection = 40;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    
+    // For selecting cell.
+    tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
     UIImage *favImageOff = [UIImage imageNamed:@"star-off.png"];
@@ -97,68 +98,62 @@ static const NSUInteger kNumSection = 40;
     [self.note setText:@"Enter some note here, maybe!"];
     [self.note setFont:[UIFont fontWithName:@"HelveticaNeue" size:13]];
     [self.note setTextColor:[UIColor lightGrayColor]];
-    
-    
-    /*
-    _gridView = [[KKGridView alloc] initWithFrame:self.buttonGrid.bounds];
-    _gridView.scrollsToTop = YES;
-    _gridView.backgroundColor = [UIColor clearColor];
+}
+
+
+
+- (void)createGridView {
+    PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
+    _gridView = [[PSUICollectionView alloc] initWithFrame:[self.buttonGrid bounds] collectionViewLayout:layout];
     _gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _gridView.cellSize = CGSizeMake(75.f, 75.f);
-    _gridView.cellPadding = CGSizeMake(4.f, 4.f);
+    _gridView.delegate = self;
+    _gridView.dataSource = self;
     _gridView.allowsMultipleSelection = NO;
+    _gridView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    [_gridView registerClass:[RecordCellController class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50.f)];
-    headerView.backgroundColor = [UIColor redColor];
-    _gridView.gridHeaderView = headerView;
     [self.buttonGrid addSubview:_gridView];
-     */
 }
 
 #pragma mark -
-#pragma mark UICollectionVIew Delegate methods
+#pragma mark Collection View Data Source
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {    
+    RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+    
+    [cell setBackgroundColor:[UIColor colorWithRed:248.0/255 green:248.0/255 blue:248.0/255 alpha:1.0]];
+    cell.layer.cornerRadius = 4; // rounded corners
+    [cell.image setImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]]];
+    
+    [cell.label setText:[arrayOfCatLabel objectAtIndex:indexPath.item]];
+    [cell.label setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
+    [cell.label setTextColor:[UIColor lightGrayColor]];
+    
+    return cell;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(PSUICollectionView *)collectionView
 {
     return 1;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+- (CGSize)collectionView:(PSUICollectionView *)collectionView layout:(PSUICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CollectionViewCellSize;
+}
+
+- (NSInteger)collectionView:(PSUICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     return [arrayOfCatLabel count];
 }
 
+#pragma mark -
+#pragma mark Collection View Delegate
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"cell deseleted");
+- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@ - %@", NSStringFromSelector(_cmd), indexPath);
 }
 
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"cell deseleted");
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"RecordCell";
-    RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [cell setBackgroundColor:[UIColor colorWithRed:248.0/255 green:248.0/255 blue:248.0/255 alpha:1.0]];
-    cell.layer.cornerRadius = 4; // rounded corners
-    
-    [[cell catImage]setImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]]];
-    [[cell catLabel]setText:[arrayOfCatLabel objectAtIndex:indexPath.item]];
-    [[cell catLabel]setFont:[UIFont fontWithName:@"HelveticaNeue" size:10]];
-    [[cell catLabel] setTextColor:[UIColor lightGrayColor]];
-    return cell;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)collectionView:(PSUICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@ - %@", NSStringFromSelector(_cmd), indexPath);
 }
 
 #pragma mark - IBActions

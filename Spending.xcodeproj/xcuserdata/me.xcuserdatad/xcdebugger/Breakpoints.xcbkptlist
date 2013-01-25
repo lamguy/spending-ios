@@ -21,24 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Spending/AddSpendViewController.m"
-         timestampString = "380815956.346347"
+         timestampString = "380827245.752238"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "99"
-         endingLineNumber = "99"
-         landmarkName = "-viewDidLoad"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Spending/AddSpendViewController.m"
-         timestampString = "380815956.346347"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
+         startingLineNumber = "100"
+         endingLineNumber = "100"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

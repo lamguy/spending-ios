@@ -390,61 +390,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h60-sJ-5B1">
-                                                    <subviews>
-                                                        <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c5q-YK-0cr">
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="120" id="eI1-pd-xr8"/>
-                                                            </constraints>
-                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0oD-HN-frs">
-                                                                <size key="itemSize" width="52" height="52"/>
-                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            </collectionViewFlowLayout>
-                                                            <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecordCell" id="TQc-fR-ulB" customClass="RecordCellController">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <subviews>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t59-Md-nvz">
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="width" constant="28" id="TjC-Vr-afU"/>
-                                                                                    <constraint firstAttribute="height" constant="28" id="yWa-fr-F5H"/>
-                                                                                </constraints>
-                                                                            </imageView>
-                                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrE-nx-aJr">
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                    <constraints>
-                                                                        <constraint firstItem="t59-Md-nvz" firstAttribute="centerX" secondItem="TQc-fR-ulB" secondAttribute="centerX" type="default" id="5Hs-24-VZv"/>
-                                                                        <constraint firstItem="GrE-nx-aJr" firstAttribute="top" secondItem="TQc-fR-ulB" secondAttribute="top" constant="35" type="user" id="EHH-h3-Hrp"/>
-                                                                        <constraint firstItem="GrE-nx-aJr" firstAttribute="centerX" secondItem="t59-Md-nvz" secondAttribute="centerX" type="default" id="EXm-1S-JJd"/>
-                                                                        <constraint firstItem="t59-Md-nvz" firstAttribute="top" secondItem="TQc-fR-ulB" secondAttribute="top" constant="7" id="GLU-3a-AbJ"/>
-                                                                    </constraints>
-                                                                    <size key="customSize" width="52" height="52"/>
-                                                                    <connections>
-                                                                        <outlet property="catImage" destination="t59-Md-nvz" id="bVH-U2-VXL"/>
-                                                                        <outlet property="catLabel" destination="GrE-nx-aJr" id="Ve6-7e-nJN"/>
-                                                                    </connections>
-                                                                </collectionViewCell>
-                                                            </cells>
-                                                        </collectionView>
-                                                    </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="c5q-YK-0cr" firstAttribute="top" secondItem="h60-sJ-5B1" secondAttribute="top" type="default" id="Phv-AS-SOi"/>
-                                                        <constraint firstItem="c5q-YK-0cr" firstAttribute="trailing" secondItem="h60-sJ-5B1" secondAttribute="trailing" type="default" id="UND-hH-Kwp"/>
-                                                        <constraint firstItem="c5q-YK-0cr" firstAttribute="leading" secondItem="h60-sJ-5B1" secondAttribute="leading" type="default" id="b9H-AN-72b"/>
-                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -478,7 +424,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="buttonGrid" destination="h60-sJ-5B1" id="fVK-gN-Wcj"/>
-                        <outlet property="catCollectionView" destination="c5q-YK-0cr" id="fG0-ZH-cWn"/>
                         <outlet property="keyGrid" destination="SNN-En-nxF" id="aNb-t6-6z0"/>
                         <outlet property="list" destination="vX9-AM-G1b" id="yuh-qm-rTE"/>
                         <outlet property="name" destination="5oH-cm-As5" id="WUk-Vn-tj4"/>
@@ -536,15 +481,6 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RecordCellController" superclassName="UICollectionViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordCellController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="catImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="catLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="SpendRecordCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
