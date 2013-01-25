@@ -56,6 +56,7 @@ static const NSUInteger kNumSection = 40;
     
     [[self catCollectionView]setDataSource:self];
     [[self catCollectionView]setDelegate:self];
+    [[self catCollectionView]setAllowsSelection:YES];
     
     
     arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing", @"cat_drink", @"cat_transit", @"cat_movie", @"cat_movies", nil];
@@ -78,6 +79,8 @@ static const NSUInteger kNumSection = 40;
     
     
     [self.name setFont:[UIFont fontWithName:@"HelveticaNeue" size:13]];
+    
+    
     
     /*
     UIImage* WhiteButtonImage = [[UIImage imageNamed:@"whiteButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 6, 6)];
@@ -112,6 +115,9 @@ static const NSUInteger kNumSection = 40;
      */
 }
 
+#pragma mark -
+#pragma mark UICollectionVIew Delegate methods
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -120,6 +126,18 @@ static const NSUInteger kNumSection = 40;
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return [arrayOfCatLabel count];
+}
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"cell deseleted");
+}
+
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"cell deseleted");
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -135,27 +153,6 @@ static const NSUInteger kNumSection = 40;
     [[cell catLabel]setFont:[UIFont fontWithName:@"HelveticaNeue" size:10]];
     [[cell catLabel] setTextColor:[UIColor lightGrayColor]];
     return cell;
-}
-
--(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
--(BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"cell seleted");
-}
-
-
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"cell deseleted");
 }
 
 - (void)didReceiveMemoryWarning
