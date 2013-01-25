@@ -13,7 +13,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self customizeApperance];
     return YES;
+}
+
+- (void)customizeApperance
+{
+    
+    // Set new background image for top bar
+    UIImage* NavBG = [UIImage imageNamed:@"TopBar.png"];
+    [[UINavigationBar appearance] setBackgroundImage:NavBG forBarMetrics:UIBarMetricsDefault];
+    
+    // Set new background for all nav buttons
+    UIImage* NavButtonImage = [[UIImage imageNamed:@"button_blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    [[UIBarButtonItem appearance] setBackgroundImage:NavButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UISearchBar appearance] setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bar.png"] forState:UIControlStateNormal];
+    [[UISearchBar appearance] setBackgroundImage:[UIImage imageNamed:@"bg.png"]];
+
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
