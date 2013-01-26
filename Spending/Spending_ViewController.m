@@ -169,7 +169,9 @@
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc]init];
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
-    cell.spendAmount.text = [currencyFormatter stringFromNumber:[NSNumber numberWithInt:aRecord.amount]];
+    // format currency displaying on talbeview
+    double amountInFloat = aRecord.amount/100.00;
+    cell.spendAmount.text = [NSString stringWithFormat:@"$%.02f", amountInFloat];
     
     return cell;
 }
