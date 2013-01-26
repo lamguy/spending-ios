@@ -294,7 +294,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
     {
         NSLog(@"DB opened for inserting task");
         
-        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE) values ('%d', '%s', '%s')", 1, [self.name.text UTF8String], [self.note.text UTF8String]];
+        NSString *cleanAmount = [self.amount.text stringByReplacingOccurrencesOfString:@"." withString:@""];
+        
+        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, AMOUNT) values ('%d', '%s', '%s', '%lld')", 1, [self.name.text UTF8String], [self.note.text UTF8String], [cleanAmount longLongValue]];
         
         const char *insert_spending_stmt = [insertStmt UTF8String];
         
@@ -313,6 +315,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         }
     }
     
+    NSLog(@"Error: %s", error);
         
     [self dismissViewControllerAnimated:YES completion:^{
         
