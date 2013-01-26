@@ -26,7 +26,6 @@
 		8C19F68116B0EF2D00CC1E09 /* cat_transit.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C19F66F16B0EF2D00CC1E09 /* cat_transit.png */; };
 		8C19F68216B0EF2D00CC1E09 /* cat_transit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C19F67016B0EF2D00CC1E09 /* cat_transit@2x.png */; };
 		8C19F69216B1DFBD00CC1E09 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C19F69116B1DFBD00CC1E09 /* Record.m */; };
-		8C53CF0916ADF497003C2BA7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C53CF0816ADF497003C2BA7 /* CoreLocation.framework */; };
 		8C53CF0C16AE0062003C2BA7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0B16AE0062003C2BA7 /* bg.png */; };
 		8C53CF0E16AE0077003C2BA7 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0D16AE0077003C2BA7 /* bg@2x.png */; };
 		8C53CF1016AE07CA003C2BA7 /* search_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0F16AE07CA003C2BA7 /* search_bar.png */; };
@@ -101,8 +100,9 @@
 		8CB4CAB016AD9E6A00E5B058 /* cat_computer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAE16AD9E6A00E5B058 /* cat_computer.png */; };
 		8CB4CAB116AD9E6A00E5B058 /* cat_general.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */; };
 		8CB4CB0916ADAD7200E5B058 /* AddSpendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */; };
-		8CDE201616ADB719002163EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDE201516ADB719002163EF /* QuartzCore.framework */; };
-		8CDE201816ADB71E002163EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDE201716ADB71E002163EF /* MapKit.framework */; };
+		8CDA33FB16B45FD3006973B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */; };
+		8CDA33FD16B45FDC006973B9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */; };
+		8CDA33FF16B45FE7006973B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FE16B45FE7006973B9 /* MapKit.framework */; };
 		8CDE202B16ADC1A2002163EF /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE202A16ADC1A2002163EF /* GraphingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -127,7 +127,6 @@
 		8C19F67016B0EF2D00CC1E09 /* cat_transit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cat_transit@2x.png"; sourceTree = "<group>"; };
 		8C19F69016B1DFBC00CC1E09 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		8C19F69116B1DFBD00CC1E09 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
-		8C53CF0816ADF497003C2BA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8C53CF0B16AE0062003C2BA7 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8C53CF0D16AE0077003C2BA7 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		8C53CF0F16AE07CA003C2BA7 /* search_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_bar.png; sourceTree = "<group>"; };
@@ -226,8 +225,9 @@
 		8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_general.png; sourceTree = "<group>"; };
 		8CB4CB0716ADAD7200E5B058 /* AddSpendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSpendViewController.h; sourceTree = "<group>"; };
 		8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSpendViewController.m; sourceTree = "<group>"; };
-		8CDE201516ADB719002163EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8CDE201716ADB71E002163EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8CDA33FE16B45FE7006973B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8CDE202916ADC1A2002163EF /* GraphingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingViewController.h; sourceTree = "<group>"; };
 		8CDE202A16ADC1A2002163EF /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,11 +237,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CDA33FF16B45FE7006973B9 /* MapKit.framework in Frameworks */,
+				8CDA33FD16B45FDC006973B9 /* QuartzCore.framework in Frameworks */,
+				8CDA33FB16B45FD3006973B9 /* CoreLocation.framework in Frameworks */,
 				8C930BA316B1EB13007BAC32 /* libsqlite3.dylib in Frameworks */,
 				8C5F369D16AF14BB0010676B /* libKKGridView.a in Frameworks */,
-				8C53CF0916ADF497003C2BA7 /* CoreLocation.framework in Frameworks */,
-				8CDE201816ADB71E002163EF /* MapKit.framework in Frameworks */,
-				8CDE201616ADB719002163EF /* QuartzCore.framework in Frameworks */,
 				8C617B3816AD1A5B000FC1DC /* UIKit.framework in Frameworks */,
 				8C617B3A16AD1A5B000FC1DC /* Foundation.framework in Frameworks */,
 				8C617B3C16AD1A5B000FC1DC /* CoreGraphics.framework in Frameworks */,
@@ -254,13 +254,13 @@
 		8C617B2816AD1A5B000FC1DC = {
 			isa = PBXGroup;
 			children = (
+				8CDA33FE16B45FE7006973B9 /* MapKit.framework */,
+				8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */,
+				8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */,
 				8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */,
 				8C5F369C16AF14BB0010676B /* libKKGridView.a */,
 				8C53CF3516AF00C3003C2BA7 /* Icon@2x.png */,
 				8C53CF3316AF00B7003C2BA7 /* Icon.png */,
-				8C53CF0816ADF497003C2BA7 /* CoreLocation.framework */,
-				8CDE201716ADB71E002163EF /* MapKit.framework */,
-				8CDE201516ADB719002163EF /* QuartzCore.framework */,
 				8C617B3D16AD1A5C000FC1DC /* Spending */,
 				8C617B3616AD1A5B000FC1DC /* Frameworks */,
 				8C617B3416AD1A5B000FC1DC /* Products */,
