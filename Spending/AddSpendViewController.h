@@ -15,6 +15,7 @@
 -(IBAction)doneButtonPressed:(id)sender;
 -(IBAction)starPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UILabel *amount;
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (strong, nonatomic) IBOutlet UITextView *note;
 @property (strong, nonatomic) IBOutlet UIView *buttonGrid;

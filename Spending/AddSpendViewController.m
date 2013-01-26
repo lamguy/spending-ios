@@ -30,6 +30,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     NSMutableArray *arrayOfRecord;
     sqlite3 *recordDB;
     NSString *dbPathString;
+    long long tempAmount;
 }
 
 @end
@@ -85,6 +86,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
      */
     
     arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @".", @"7", @"8", @"9", @"C", nil];
+    tempAmount=0;
     
     [self.numGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
     
@@ -157,7 +159,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
         [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
         
-        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(numTapped:)];
         singleTap.numberOfTapsRequired = 1;
         singleTap.numberOfTouchesRequired = 1;
         [cell addGestureRecognizer:singleTap];
@@ -321,16 +323,24 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self.view endEditing:YES];
 }
 
-- (void)singleTap:(UITapGestureRecognizer *)tap
+- (void)numTapped:(UITapGestureRecognizer *)tap
 {
-    NSLog(@"tapped");
-    //if (UIGestureRecognizerStateEnded == tap.state) {
-    //    UITableViewCell *cell = (UITableViewCell *)tap.view;
-    //    UITableView *tableView = (UITableView *)cell.superview;
-    //    NSIndexPath* indexPath = [tableView indexPathForCell:cell];
-    //   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    //    // do single tap
-    //}
+    if (UIGestureRecognizerStateEnded == tap.state) {
+        NSLog(@"tapped");
+        
+        NumGrid *cell = (NumGrid *)tap.view;
+        [cell setSelected:YES];
+        [cell.key setTextColor:[UIColor whiteColor]];
+        
+        tempAmount = tempAmount*10+[cell.key.text longLongValue];
+        self.amount.text = [NSString stringWithFormat:@"%.02f", tempAmount/100.00];
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [cell setSelected:NO];
+            [cell.key setTextColor:[UIColor colorWithRed:119.0/255.0 green:119.0/255.0 blue:119.0/255.0 alpha:1.0]];
+        });
+    }
 }
 
 #pragma mark -

@@ -394,6 +394,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="amount" destination="m3q-aL-6Cb" id="ffy-UY-kkK"/>
                         <outlet property="buttonGrid" destination="h60-sJ-5B1" id="fVK-gN-Wcj"/>
                         <outlet property="list" destination="vX9-AM-G1b" id="yuh-qm-rTE"/>
                         <outlet property="name" destination="5oH-cm-As5" id="WUk-Vn-tj4"/>
