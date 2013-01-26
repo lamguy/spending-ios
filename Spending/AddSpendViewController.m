@@ -156,6 +156,12 @@ NSString *KeyCellIdentifier = @"KeyCell";
         NSLog(@"num cell called");
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
         [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
+        
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+        singleTap.numberOfTapsRequired = 1;
+        singleTap.numberOfTouchesRequired = 1;
+        [cell addGestureRecognizer:singleTap];
+        
         return cell;
     }
     
@@ -313,6 +319,18 @@ NSString *KeyCellIdentifier = @"KeyCell";
 
 -(void)dismissKeyboard {
     [self.view endEditing:YES];
+}
+
+- (void)singleTap:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"tapped");
+    //if (UIGestureRecognizerStateEnded == tap.state) {
+    //    UITableViewCell *cell = (UITableViewCell *)tap.view;
+    //    UITableView *tableView = (UITableView *)cell.superview;
+    //    NSIndexPath* indexPath = [tableView indexPathForCell:cell];
+    //   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    //    // do single tap
+    //}
 }
 
 #pragma mark -
