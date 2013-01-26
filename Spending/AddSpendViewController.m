@@ -107,7 +107,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     _numKeyGrid.allowsSelection = NO;
     _numKeyGrid.allowsMultipleSelection = NO;
     _numKeyGrid.backgroundColor = [UIColor clearColor];
-    _numKeyGrid.frame = CGRectMake(10, 15, 300,150); // still doesnt work
+    _numKeyGrid.frame = CGRectMake(10, 15, 300,150);
     
     [_numKeyGrid registerClass:[NumGrid class] forCellWithReuseIdentifier:KeyCellIdentifier];
     
@@ -138,6 +138,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (collectionView == _gridView) {
+        NSLog(@"cat cell called");
         
         RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
         
@@ -150,14 +151,15 @@ NSString *KeyCellIdentifier = @"KeyCell";
         [cell.label setTextColor:[UIColor lightGrayColor]];
         return cell;
     }
-    else
+    else if (collectionView == _numKeyGrid)
     {
+        NSLog(@"num cell called");
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
         [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
-        [cell.key setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
-        [cell.key setTextColor:[UIColor lightGrayColor]];
         return cell;
     }
+    
+    return nil;
     
     
 }
