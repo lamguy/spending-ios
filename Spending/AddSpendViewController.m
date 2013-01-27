@@ -26,6 +26,8 @@ NSString *KeyCellIdentifier = @"KeyCell";
     NSArray *arrayOfCatImages;
     NSArray *arrayOfCatLabel;
     
+    NSInteger catID;
+    
     NSArray *arrayOfKeys;
     NSMutableArray *arrayOfRecord;
     sqlite3 *recordDB;
@@ -41,7 +43,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        catID = 1;
     }
     return self;
 }
@@ -245,6 +247,8 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         
         cell.label.textColor = [UIColor whiteColor];
+        catID = [indexPath row];
+        
     }
     else
     {
@@ -306,7 +310,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         NSString *cleanAmount = [self.amount.text stringByReplacingOccurrencesOfString:@"." withString:@""];
         
-        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, AMOUNT) values ('%d', '%s', '%s', '%lld')", 1, [self.name.text UTF8String], [self.note.text UTF8String], [cleanAmount longLongValue]];
+        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, AMOUNT) values ('%d', '%s', '%s', '%lld')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [cleanAmount longLongValue]];
         
         const char *insert_spending_stmt = [insertStmt UTF8String];
         
