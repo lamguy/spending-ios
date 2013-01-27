@@ -103,6 +103,7 @@
 		8CDA33FB16B45FD3006973B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */; };
 		8CDA33FD16B45FDC006973B9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */; };
 		8CDA33FF16B45FE7006973B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FE16B45FE7006973B9 /* MapKit.framework */; };
+		8CDA340F16B52D83006973B9 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA340E16B52D83006973B9 /* Accelerate.framework */; };
 		8CDE202B16ADC1A2002163EF /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE202A16ADC1A2002163EF /* GraphingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -228,6 +229,7 @@
 		8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8CDA33FE16B45FE7006973B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8CDA340E16B52D83006973B9 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		8CDE202916ADC1A2002163EF /* GraphingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingViewController.h; sourceTree = "<group>"; };
 		8CDE202A16ADC1A2002163EF /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CDA340F16B52D83006973B9 /* Accelerate.framework in Frameworks */,
 				8CDA33FF16B45FE7006973B9 /* MapKit.framework in Frameworks */,
 				8CDA33FD16B45FDC006973B9 /* QuartzCore.framework in Frameworks */,
 				8CDA33FB16B45FD3006973B9 /* CoreLocation.framework in Frameworks */,
@@ -254,6 +257,7 @@
 		8C617B2816AD1A5B000FC1DC = {
 			isa = PBXGroup;
 			children = (
+				8CDA340E16B52D83006973B9 /* Accelerate.framework */,
 				8CDA33FE16B45FE7006973B9 /* MapKit.framework */,
 				8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */,
 				8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */,
