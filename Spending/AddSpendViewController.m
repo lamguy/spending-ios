@@ -238,6 +238,12 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
         
+        
+        // mask icon with white color
+        UIImage *maskedImage = [self newImageFromMaskImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]] inColor:[UIColor whiteColor]];
+        [cell.image setImage:maskedImage];
+        
+        
         cell.label.textColor = [UIColor whiteColor];
     }
     else
@@ -255,6 +261,10 @@ NSString *KeyCellIdentifier = @"KeyCell";
     if (collectionView == _gridView) {
         
         RecordCellController *cell = (RecordCellController *)[collectionView cellForItemAtIndexPath:indexPath];
+        
+        
+        // get the original icon back
+        [cell.image setImage:[UIImage imageNamed:[arrayOfCatImages objectAtIndex:indexPath.item]]];
         
         cell.label.textColor = [UIColor lightGrayColor];
     }
@@ -344,6 +354,27 @@ NSString *KeyCellIdentifier = @"KeyCell";
             [cell.key setTextColor:[UIColor colorWithRed:119.0/255.0 green:119.0/255.0 blue:119.0/255.0 alpha:1.0]];
         });
     }
+}
+         
+         
+// http://stackoverflow.com/questions/5423210/how-do-i-change-a-partially-transparent-images-color-in-ios
+-(UIImage *) newImageFromMaskImage:(UIImage *)mask inColor:(UIColor *) color {
+    CGImageRef maskImage = mask.CGImage;
+    CGFloat width = mask.size.width;
+    CGFloat height = mask.size.height;
+    CGRect bounds = CGRectMake(0,0,width,height);
+
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmapContext = CGBitmapContextCreate(NULL, width, height, 8, 0, colorSpace, kCGImageAlphaPremultipliedLast);
+    CGContextClipToMask(bitmapContext, bounds, maskImage);
+    CGContextSetFillColorWithColor(bitmapContext, color.CGColor);
+    CGContextFillRect(bitmapContext, bounds);
+
+    CGImageRef mainViewContentBitmapContext = CGBitmapContextCreateImage(bitmapContext);
+    CGContextRelease(bitmapContext);
+
+    UIImage *result = [UIImage imageWithCGImage:mainViewContentBitmapContext];
+    return result;
 }
 
 #pragma mark -
