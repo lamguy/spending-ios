@@ -87,7 +87,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self.list setBackgroundImage:WhiteButtonImage forState:UIControlStateNormal];
      */
     
-    arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @".", @"7", @"8", @"9", @"C", nil];
+    arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @"00", @"7", @"8", @"9", @"C", nil];
     tempAmount=0;
     
     [self.numGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
@@ -349,7 +349,20 @@ NSString *KeyCellIdentifier = @"KeyCell";
         [cell setSelected:YES];
         [cell.key setTextColor:[UIColor whiteColor]];
         
-        tempAmount = tempAmount*10+[cell.key.text longLongValue];
+        if([cell.key.text isEqualToString:[NSString stringWithFormat:@"00" ]])
+        {
+            NSLog(@"tapped 00");
+            tempAmount = tempAmount*100+[cell.key.text longLongValue];
+        }
+        else if([cell.key.text isEqualToString:[NSString stringWithFormat:@"C" ]])
+        {
+            tempAmount = 0.00;
+            NSLog(@"tapped C");
+        }
+        else
+        {
+            tempAmount = tempAmount*10+[cell.key.text longLongValue];
+        }
         self.amount.text = [NSString stringWithFormat:@"%.02f", tempAmount/100.00];
         
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
