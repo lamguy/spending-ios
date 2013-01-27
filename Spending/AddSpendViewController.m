@@ -138,6 +138,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
     _gridView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     [_gridView registerClass:[RecordCellController class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     
+    // define the scroll view content size and enable paging
+	[self.catScroller setContentSize: CGSizeMake(640, self.buttonGrid.bounds.size.height)] ;
+    
     // programmatically add the page control
 	pageControl = [[DDPageControl alloc] init] ;
     [pageControl setBounds:CGRectMake(0,0,self.buttonGrid.center.x,self.buttonGrid.bounds.size.height)];
@@ -151,7 +154,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 	[pageControl setIndicatorDiameter: 7.0f] ;
 	[pageControl setIndicatorSpace: 7.0f] ;
     
-    [self.buttonGrid addSubview:_gridView];
+    [self.catScroller addSubview:_gridView];
 	[self.buttonGrid addSubview: pageControl] ;
 }
 

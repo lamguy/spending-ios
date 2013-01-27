@@ -26,4 +26,5 @@
 @property (strong, nonatomic) IBOutlet UIView *numGrid;
 @property (weak, nonatomic) IBOutlet UIButton *star;
 @property (strong, nonatomic) IBOutlet UIButton *list;
+@property (strong, nonatomic) IBOutlet UIScrollView *catScroller;
 @end
