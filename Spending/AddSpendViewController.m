@@ -14,6 +14,10 @@
 #import "sqlite3.h"
 #import "Record.h"
 
+
+
+int numberOfCatPages = 2 ;
+
 CGSize CollectionViewCellSize = { .height = 52, .width = 52 };
 CGSize NumCellSize = { .height= 44, .width=72};
 NSString *CollectionViewCellIdentifier = @"RecordCell";
@@ -130,10 +134,25 @@ NSString *KeyCellIdentifier = @"KeyCell";
     _gridView.delegate = self;
     _gridView.dataSource = self;
     _gridView.allowsMultipleSelection = NO;
+    [_gridView setScrollEnabled: NO];
     _gridView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     [_gridView registerClass:[RecordCellController class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     
+    // programmatically add the page control
+	pageControl = [[DDPageControl alloc] init] ;
+    [pageControl setBounds:CGRectMake(0,0,self.buttonGrid.center.x,self.buttonGrid.bounds.size.height)];
+	[pageControl setNumberOfPages: numberOfCatPages] ;
+	[pageControl setCurrentPage: 0] ;
+	[pageControl addTarget: self action: @selector(pageControlClicked:) forControlEvents: UIControlEventValueChanged] ;
+	[pageControl setDefersCurrentPageDisplay: YES] ;
+	[pageControl setType: DDPageControlTypeOnFullOffEmpty] ;
+	[pageControl setOnColor: [UIColor colorWithRed:198.0/255.0 green:198.0/255.0 blue:198.0/255.0 alpha:1.0]] ;
+	[pageControl setOffColor: [UIColor colorWithWhite: 0.7f alpha: 1.0f]] ;
+	[pageControl setIndicatorDiameter: 7.0f] ;
+	[pageControl setIndicatorSpace: 7.0f] ;
+    
     [self.buttonGrid addSubview:_gridView];
+	[self.buttonGrid addSubview: pageControl] ;
 }
 
 #pragma mark -

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "sqlite3.h"
+#import "DDPageControl.h"
 
 @interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+{
+    DDPageControl *pageControl;
+}
 
 -(IBAction)cancelButtonPressed:(id)sender;
 -(IBAction)doneButtonPressed:(id)sender;

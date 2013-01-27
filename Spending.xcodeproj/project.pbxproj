@@ -100,6 +100,7 @@
 		8CB4CAB016AD9E6A00E5B058 /* cat_computer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAE16AD9E6A00E5B058 /* cat_computer.png */; };
 		8CB4CAB116AD9E6A00E5B058 /* cat_general.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */; };
 		8CB4CB0916ADAD7200E5B058 /* AddSpendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */; };
+		8CBCC77416B5EAE10081FF6E /* DDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBCC77316B5EAE10081FF6E /* DDPageControl.m */; };
 		8CDA33FB16B45FD3006973B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */; };
 		8CDA33FD16B45FDC006973B9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */; };
 		8CDA33FF16B45FE7006973B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CDA33FE16B45FE7006973B9 /* MapKit.framework */; };
@@ -226,6 +227,8 @@
 		8CB4CAAF16AD9E6A00E5B058 /* cat_general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat_general.png; sourceTree = "<group>"; };
 		8CB4CB0716ADAD7200E5B058 /* AddSpendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSpendViewController.h; sourceTree = "<group>"; };
 		8CB4CB0816ADAD7200E5B058 /* AddSpendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSpendViewController.m; sourceTree = "<group>"; };
+		8CBCC77216B5EAE10081FF6E /* DDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDPageControl.h; sourceTree = "<group>"; };
+		8CBCC77316B5EAE10081FF6E /* DDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDPageControl.m; sourceTree = "<group>"; };
 		8CDA33FA16B45FD3006973B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8CDA33FC16B45FDC006973B9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8CDA33FE16B45FE7006973B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -446,6 +449,8 @@
 		8CB4CA7B16AD626700E5B058 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				8CBCC77216B5EAE10081FF6E /* DDPageControl.h */,
+				8CBCC77316B5EAE10081FF6E /* DDPageControl.m */,
 				8C930BDC16B2E3D9007BAC32 /* PSTCollectionView */,
 				8C6389B516B0D38D0050A3AF /* InfinitePagingView.h */,
 				8C6389B616B0D38D0050A3AF /* InfinitePagingView.m */,
@@ -623,6 +628,7 @@
 				8C930C0016B2E3F2007BAC32 /* PSTGridLayoutRow.m in Sources */,
 				8C930C0116B2E3F2007BAC32 /* PSTGridLayoutSection.m in Sources */,
 				8C930C0416B2FE11007BAC32 /* NumGrid.m in Sources */,
+				8CBCC77416B5EAE10081FF6E /* DDPageControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
