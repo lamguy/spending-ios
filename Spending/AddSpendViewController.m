@@ -361,7 +361,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
 }
          
          
-// http://stackoverflow.com/questions/5423210/how-do-i-change-a-partially-transparent-images-color-in-ios
+// stackoverflow.com/questions/5423210/how-do-i-change-a-partially-transparent-images-color-in-ios
+// Usage: UIImage *mask = [self newImageFromMaskImage:<#(UIImage *)#> inColor:<#(UIColor *)#>];
+
 -(UIImage *) newImageFromMaskImage:(UIImage *)mask inColor:(UIColor *) color {
     CGImageRef maskImage = mask.CGImage;
     CGFloat width = mask.size.width;
