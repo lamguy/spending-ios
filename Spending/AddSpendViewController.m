@@ -130,7 +130,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 {
     PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
     _gridView = [[PSUICollectionView alloc] initWithFrame:[self.buttonGrid bounds] collectionViewLayout:layout];
-    _gridView.frame = CGRectMake(0, 0, 610, self.view.bounds.size.height);
+    _gridView.frame = CGRectMake(0, 0, self.view.bounds.size.width*numberOfCatPages-30, self.view.bounds.size.height);
     _gridView.delegate = self;
     _gridView.dataSource = self;
     _gridView.allowsMultipleSelection = NO;
