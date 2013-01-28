@@ -10,8 +10,9 @@
 #import "sqlite3.h"
 #import "DDPageControl.h"
 
-@interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
 {
+    IBOutlet UIScrollView *catScroller;
     DDPageControl *pageControl;
 }
 

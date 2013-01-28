@@ -60,8 +60,8 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self createNumBoard];
     
     
-    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing", @"cat_drink", @"cat_transit", @"cat_movie", @"cat_movies", nil];
-    arrayOfCatLabel  = [[NSArray alloc]initWithObjects:@"General", @"Shopping", @"Gas", @"Restaurant", @"Computer", @"Housing", @"Drink", @"Travel", @"Movies", @"Mobile", nil];
+    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_housing.png", nil];
+    arrayOfCatLabel  = [[NSArray alloc]initWithObjects:@"General", @"Shopping", @"Gas", @"Restaurant", @"Computer", @"Housing", @"Drink", @"Travel", @"Movies", @"Mobile", @"House", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -130,7 +130,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 {
     PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
     _gridView = [[PSUICollectionView alloc] initWithFrame:[self.buttonGrid bounds] collectionViewLayout:layout];
-    _gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _gridView.frame = CGRectMake(0, 0, 610, self.view.bounds.size.height);
     _gridView.delegate = self;
     _gridView.dataSource = self;
     _gridView.allowsMultipleSelection = NO;
@@ -139,11 +139,13 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [_gridView registerClass:[RecordCellController class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     
     // define the scroll view content size and enable paging
-	[self.catScroller setContentSize: CGSizeMake(640, self.buttonGrid.bounds.size.height)] ;
+    [self.catScroller setDelegate:self];
+	[self.catScroller setContentSize: CGSizeMake(self.view.bounds.size.width * numberOfCatPages, self.buttonGrid.bounds.size.height)] ;
     
     // programmatically add the page control
-	pageControl = [[DDPageControl alloc] init] ;
-    [pageControl setBounds:CGRectMake(0,0,self.buttonGrid.center.x,self.buttonGrid.bounds.size.height)];
+	pageControl = [[DDPageControl alloc] initWithFrame:CGRectZero] ;
+    [pageControl setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    [pageControl setFrame:CGRectMake(self.view.bounds.size.width/2-20,103,300,20)];
 	[pageControl setNumberOfPages: numberOfCatPages] ;
 	[pageControl setCurrentPage: 0] ;
 	[pageControl addTarget: self action: @selector(pageControlClicked:) forControlEvents: UIControlEventValueChanged] ;
@@ -301,6 +303,33 @@ NSString *KeyCellIdentifier = @"KeyCell";
     
     
 }
+
+#pragma mark -
+#pragma mark UIScrollView delegate methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView
+{
+	CGFloat pageWidth = self.catScroller.bounds.size.width ;
+    float fractionalPage = self.catScroller.contentOffset.x / pageWidth ;
+	NSInteger nearestNumber = lround(fractionalPage) ;
+	
+	if (pageControl.currentPage != nearestNumber)
+	{
+		pageControl.currentPage = nearestNumber ;
+		
+		// if we are dragging, we want to update the page control directly during the drag
+		if (self.catScroller.dragging)
+			[pageControl updateCurrentPageDisplay] ;
+	}
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView
+{
+    NSLog(@"scrolled");
+	// if we are animating (triggered by clicking on the page control), we update the page control
+	[pageControl updateCurrentPageDisplay] ;
+}
+
 
 #pragma mark - IBActions
 
