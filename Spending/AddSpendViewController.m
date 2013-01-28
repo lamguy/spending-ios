@@ -60,8 +60,8 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self createNumBoard];
     
     
-    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_housing.png", nil];
-    arrayOfCatLabel  = [[NSArray alloc]initWithObjects:@"General", @"Shopping", @"Gas", @"Restaurant", @"Computer", @"Housing", @"Drink", @"Travel", @"Movies", @"Mobile", @"House", nil];
+    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_gift.png", @"cat_babies.png", @"cat_pets.png", @"cat_personal.png", @"cat_medical.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_books.png", nil];
+    arrayOfCatLabel  = [[NSArray alloc]initWithObjects:@"General", @"Shopping", @"Gas", @"Restaurant", @"Computer", @"Gifts", @"Babies", @"Pets", @"Personal", @"Medical", @"Housing", @"Drink", @"Travel", @"Movies", @"Mobile", @"Books", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -148,13 +148,12 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [pageControl setFrame:CGRectMake(self.view.bounds.size.width/2-20,103,300,20)];
 	[pageControl setNumberOfPages: numberOfCatPages] ;
 	[pageControl setCurrentPage: 0] ;
-	[pageControl addTarget: self action: @selector(pageControlClicked:) forControlEvents: UIControlEventValueChanged] ;
 	[pageControl setDefersCurrentPageDisplay: YES] ;
 	[pageControl setType: DDPageControlTypeOnFullOffEmpty] ;
 	[pageControl setOnColor: [UIColor colorWithRed:198.0/255.0 green:198.0/255.0 blue:198.0/255.0 alpha:1.0]] ;
 	[pageControl setOffColor: [UIColor colorWithWhite: 0.7f alpha: 1.0f]] ;
-	[pageControl setIndicatorDiameter: 7.0f] ;
-	[pageControl setIndicatorSpace: 7.0f] ;
+	[pageControl setIndicatorDiameter: 5.0f] ;
+	[pageControl setIndicatorSpace: 5.0f] ;
     
     [self.catScroller addSubview:_gridView];
 	[self.buttonGrid addSubview: pageControl] ;
@@ -309,7 +308,12 @@ NSString *KeyCellIdentifier = @"KeyCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-	CGFloat pageWidth = self.catScroller.bounds.size.width ;
+    
+	CGFloat pageWidth = self.catScroller.bounds.size.width;
+    
+    //[self.catScroller setContentOffset: CGPointMake(self.catScroller.bounds.size.width * pageControl.currentPage, self.catScroller.contentOffset.y) animated: YES] ;
+    
+    NSLog(@"%f", self.catScroller.bounds.size.width);
     float fractionalPage = self.catScroller.contentOffset.x / pageWidth ;
 	NSInteger nearestNumber = lround(fractionalPage) ;
 	
@@ -325,9 +329,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView
 {
-    NSLog(@"scrolled");
-	// if we are animating (triggered by clicking on the page control), we update the page control
-	[pageControl updateCurrentPageDisplay] ;
+    self.catScroller.frame = CGRectMake(10,10,self.view.bounds.size.width * pageControl.currentPage,self.catScroller.bounds.size.height);
 }
 
 
