@@ -37,6 +37,8 @@ NSString *KeyCellIdentifier = @"KeyCell";
     sqlite3 *recordDB;
     NSString *dbPathString;
     long long tempAmount;
+    
+    NSString *locatedAt;
 }
 
 @end
@@ -97,11 +99,44 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self.numGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
     
     
-    [self.note setDelegate:self];
+    //[self.note setDelegate:self];
     [self.note setReturnKeyType:UIReturnKeyDone];
-    [self.note setText:@"Enter some note here, maybe!"];
     [self.note setFont:[UIFont fontWithName:@"HelveticaNeue" size:13]];
     [self.note setTextColor:[UIColor lightGrayColor]];
+    
+    
+    self.geoCoder = [[CLGeocoder alloc] init];
+    self.locationManager = [[CLLocationManager alloc]init];
+    [self.locationManager setDelegate:self];
+    
+    //Get user location
+    [self.locationManager startUpdatingLocation];
+    [self geoCodeLocated];
+}
+
+
+- (void)geoCodeLocated
+{
+    
+    //Geocoding Block
+    [self.geoCoder reverseGeocodeLocation: self.locationManager.location completionHandler:
+     ^(NSArray *placemarks, NSError *error) {
+         
+         //Get nearby address
+         CLPlacemark *placemark = [placemarks objectAtIndex:0];
+         
+         //String to hold address
+         locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+         
+         //Print the location to console
+         NSLog(@"I am currently at %@",locatedAt);
+         
+         //Set the label text to current location
+         [self.note setText:locatedAt];
+         
+     }];
+    
+    
 }
 
 - (void)createNumBoard
@@ -363,7 +398,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         NSString *cleanAmount = [self.amount.text stringByReplacingOccurrencesOfString:@"." withString:@""];
         
-        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, AMOUNT) values ('%d', '%s', '%s', '%lld')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [cleanAmount longLongValue]];
+        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, ADDRESS, AMOUNT) values ('%d', '%s', '%s', '%s', '%lld')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [locatedAt UTF8String], [cleanAmount longLongValue]];
         
         const char *insert_spending_stmt = [insertStmt UTF8String];
         

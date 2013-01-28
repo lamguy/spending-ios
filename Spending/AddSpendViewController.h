@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 #import "sqlite3.h"
 #import "DDPageControl.h"
 
-@interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, CLLocationManagerDelegate, UITextViewDelegate>
 {
     IBOutlet UIScrollView *catScroller;
     DDPageControl *pageControl;
@@ -28,4 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *star;
 @property (strong, nonatomic) IBOutlet UIButton *list;
 @property (strong, nonatomic) IBOutlet UIScrollView *catScroller;
+@property (strong, nonatomic) IBOutlet CLLocationManager *locationManager;
+@property (strong, nonatomic) IBOutlet CLGeocoder *geoCoder;
+
 @end
