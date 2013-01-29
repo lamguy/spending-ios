@@ -51,14 +51,6 @@
 	return self ;
 }
 
-- (void)dealloc 
-{
-	[onColor release], onColor = nil ;
-	[offColor release], offColor = nil ;
-	
-	[super dealloc] ;
-}
-
 
 #pragma mark -
 #pragma mark drawRect
@@ -189,8 +181,6 @@
 
 - (void)setOnColor:(UIColor *)aColor
 {
-	[aColor retain] ;
-	[onColor release] ;
 	onColor = aColor ;
 	
 	[self setNeedsDisplay] ;
@@ -198,8 +188,6 @@
 
 - (void)setOffColor:(UIColor *)aColor
 {
-	[aColor retain] ;
-	[offColor release] ;
 	offColor = aColor ;
 	
 	[self setNeedsDisplay] ;
