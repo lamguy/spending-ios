@@ -120,9 +120,9 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="bVj-t0-pZw" firstAttribute="leading" secondItem="BhS-TN-7sk" secondAttribute="leading" type="default" id="5ro-34-2LB"/>
+                                            <constraint firstItem="bVj-t0-pZw" firstAttribute="top" secondItem="BhS-TN-7sk" secondAttribute="top" type="default" id="H2z-cs-A8S"/>
                                             <constraint firstItem="bVj-t0-pZw" firstAttribute="bottom" secondItem="BhS-TN-7sk" secondAttribute="bottom" type="default" id="SQa-sL-fke"/>
                                             <constraint firstItem="bVj-t0-pZw" firstAttribute="trailing" secondItem="BhS-TN-7sk" secondAttribute="trailing" type="default" id="aIX-Sg-Flk"/>
-                                            <constraint firstItem="bVj-t0-pZw" firstAttribute="centerY" secondItem="BhS-TN-7sk" secondAttribute="centerY" type="default" id="qKH-4g-l6K"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -136,33 +136,19 @@
                                     <constraint firstItem="BhS-TN-7sk" firstAttribute="top" secondItem="8Vo-sB-g68" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vRi-TH-Ip0"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tip.png" translatesAutoresizingMaskIntoConstraints="NO" id="H0q-gG-DyS"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spending helps you to track all your daily spends." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="276" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-wY-qc0">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="276" id="N8j-5L-a8e"/>
-                                    <constraint firstAttribute="height" constant="37" id="Ncz-1u-pmH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="n9L-cS-TTv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="0Us-I6-UhT"/>
-                            <constraint firstAttribute="bottom" secondItem="H0q-gG-DyS" secondAttribute="bottom" constant="24" id="10G-6z-EeC"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="4KH-T8-pvg"/>
                             <constraint firstItem="j9Y-VS-Nk6" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8ul-Nq-lXB"/>
-                            <constraint firstAttribute="bottom" secondItem="XCV-wY-qc0" secondAttribute="bottom" constant="14" id="F9m-2T-hBT"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="FDo-Ux-lyv"/>
                             <constraint firstItem="j9Y-VS-Nk6" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="HJK-zs-gxq"/>
                             <constraint firstItem="n9L-cS-TTv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="53" id="MuD-eJ-DHy"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="top" secondItem="n9L-cS-TTv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="O1v-kP-XdZ"/>
-                            <constraint firstItem="XCV-wY-qc0" firstAttribute="leading" secondItem="H0q-gG-DyS" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Oli-bQ-EfE"/>
-                            <constraint firstItem="XCV-wY-qc0" firstAttribute="trailing" secondItem="n9L-cS-TTv" secondAttribute="trailing" type="default" id="be7-gj-Abj"/>
-                            <constraint firstItem="H0q-gG-DyS" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="13" id="cdH-AH-k0K"/>
-                            <constraint firstAttribute="bottom" secondItem="Dgf-bI-g9N" secondAttribute="bottom" constant="61" id="gty-Tm-DOk"/>
+                            <constraint firstAttribute="trailing" secondItem="n9L-cS-TTv" secondAttribute="trailing" constant="10" id="ojA-kj-vVu"/>
                             <constraint firstItem="j9Y-VS-Nk6" firstAttribute="top" secondItem="3" secondAttribute="top" constant="3" id="pvn-Xh-v6y"/>
+                            <constraint firstItem="Dgf-bI-g9N" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="uYF-ii-gAg"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="top" secondItem="3" secondAttribute="top" constant="148" id="xmr-LC-FPn"/>
                         </constraints>
                     </view>
@@ -439,7 +425,6 @@
     <resources>
         <image name="add.png" width="39" height="22"/>
         <image name="list.png" width="8" height="10"/>
-        <image name="tip.png" width="13" height="19"/>
     </resources>
     <classes>
         <class className="AddSpendViewController" superclassName="UITableViewController">

@@ -58,6 +58,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self createOrOpenDB];
     
     // Change view background app-wide
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
@@ -78,9 +79,7 @@
     
     arrayOfRecord = [[NSMutableArray alloc]init];
     [[self recordTableView]setDelegate:self];
-    [[self recordTableView]setDataSource:self];
-    [self createOrOpenDB];
-    
+    [[self recordTableView]setDataSource:self];    
     
     
     NSLog(@"opend db to pull");
@@ -154,6 +153,40 @@
     return [arrayOfRecord count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
+}
+
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 20)];
+    headerView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:248.0/255.0 blue:248.0/255.0 alpha:1.0];
+    CALayer *botLine = [CALayer layer];
+    botLine.frame = CGRectMake(0, 25, 320, 1);
+    botLine.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0].CGColor;
+    [headerView.layer addSublayer:botLine];
+    
+    NSString *sectionTitle = @"Monday, January 28, 2013";
+    NSString *uppercaseSectionTitle = [sectionTitle uppercaseString];
+    
+    // Create label with section title
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, 7, tableView.bounds.size.width, 12);
+    label.textColor = [UIColor colorWithRed:171.0/255.0 green:171.0/255.0 blue:171.0/255.0 alpha:1.0];
+    label.font = [UIFont fontWithName:@"Bitter-Regular" size:10];
+    label.text = uppercaseSectionTitle;
+    label.backgroundColor = [UIColor clearColor];
+    label.layer.shadowOpacity = 1.0;
+    label.layer.shadowRadius = 0.0;
+    label.layer.shadowColor = [UIColor whiteColor].CGColor;
+    label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    [headerView addSubview:label];
+    return headerView;
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -16,12 +16,12 @@
 			<array>
 				<string>Icon.png</string>
 				<string>Icon@2x.png</string>
-                <string>Icon-72.png</string>
-                <string>Icon-72@2x.png</string>
-                <string>Icon-Small-50.png</string>
-                <string>Icon-Small-50@2x.png</string>
-                <string>Icon-Small.png</string>
-                <string>Icon-Small@2x.png</string>
+				<string>Icon-72.png</string>
+				<string>Icon-72@2x.png</string>
+				<string>Icon-Small-50.png</string>
+				<string>Icon-Small-50@2x.png</string>
+				<string>Icon-Small.png</string>
+				<string>Icon-Small@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -53,6 +53,10 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Bitter-Regular.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
