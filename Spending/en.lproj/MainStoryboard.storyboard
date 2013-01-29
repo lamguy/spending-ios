@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="d56-uc-e2j">
-                            <rect key="frame" x="0.0" y="259" width="320" height="220"/>
+                            <rect key="frame" x="0.0" y="280" width="320" height="220"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <sections>
@@ -313,17 +313,17 @@
                                             <constraint firstItem="5oH-cm-As5" firstAttribute="centerY" secondItem="6XC-vg-OtE" secondAttribute="centerY" type="default" id="rGY-F3-pIa"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="35" id="wGP-f3-wxH">
-                                        <rect key="frame" x="0.0" y="80" width="320" height="35"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="56" id="wGP-f3-wxH">
+                                        <rect key="frame" x="0.0" y="80" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Click to add some notes if no address selected." translatesAutoresizingMaskIntoConstraints="NO" id="Bd6-bK-4Ex">
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" type="user" id="3m7-0S-ade"/>
+                                                        <constraint firstAttribute="height" constant="49" id="2V2-ok-ibM"/>
                                                         <constraint firstAttribute="width" constant="269" id="5fo-jW-iHJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -347,14 +347,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="vX9-AM-G1b" firstAttribute="centerY" secondItem="Bd6-bK-4Ex" secondAttribute="centerY" type="default" id="4Ik-N1-m9o"/>
+                                            <constraint firstItem="vX9-AM-G1b" firstAttribute="top" secondItem="wGP-f3-wxH" secondAttribute="top" constant="4" id="60z-CK-62b"/>
                                             <constraint firstAttribute="trailing" secondItem="vX9-AM-G1b" secondAttribute="trailing" constant="10" type="user" id="bSM-QS-POU"/>
                                             <constraint firstItem="Bd6-bK-4Ex" firstAttribute="leading" secondItem="wGP-f3-wxH" secondAttribute="leading" type="default" id="tnx-8o-dPU"/>
                                             <constraint firstItem="Bd6-bK-4Ex" firstAttribute="top" secondItem="wGP-f3-wxH" secondAttribute="top" type="default" id="zwV-gO-iYR"/>
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" rowHeight="144" id="Tsv-3B-w1d">
-                                        <rect key="frame" x="0.0" y="115" width="320" height="144"/>
+                                        <rect key="frame" x="0.0" y="136" width="320" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="143"/>
@@ -441,6 +441,55 @@
         <image name="list.png" width="8" height="10"/>
         <image name="tip.png" width="13" height="19"/>
     </resources>
+    <classes>
+        <class className="AddSpendViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSpendViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="action" name="starPressed:"/>
+                <relationship kind="outlet" name="amount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="buttonGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="catScroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="geoCoder" candidateClass="CLGeocoder"/>
+                <relationship kind="outlet" name="list" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="locationManager" candidateClass="CLLocationManager"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="numGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="star" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CLGeocoder" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLGeocoder.h"/>
+        </class>
+        <class className="CLLocationManager" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocationManager.h"/>
+        </class>
+        <class className="GraphingViewController" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SpendRecordCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Spending_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Spending_ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addNewSpend" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="graphScroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="recordTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

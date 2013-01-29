@@ -150,7 +150,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     _numKeyGrid.allowsSelection = NO;
     _numKeyGrid.allowsMultipleSelection = NO;
     _numKeyGrid.backgroundColor = [UIColor clearColor];
-    _numKeyGrid.frame = CGRectMake(10, 15, 300,150);
+    _numKeyGrid.frame = CGRectMake(10, 6, 300,150);
     
     [_numKeyGrid registerClass:[NumGrid class] forCellWithReuseIdentifier:KeyCellIdentifier];
     
