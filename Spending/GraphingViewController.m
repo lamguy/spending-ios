@@ -8,15 +8,13 @@
 
 #import "GraphingViewController.h"
 
-float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3, 0.75, 0.3, 0.44, 0.88, 0.77, 0.99, 0.55};
-
 @implementation GraphingViewController
+float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -68,7 +66,7 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3, 0.75, 0.3, 0.44, 0.88, 0.77,
     
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, kOffsetX, kGraphHeight - maxGraphHeight * data[0]);
-    for (int i = 0; i < sizeof(data); i++)
+    for (int i = 0; i < 7; i++)
     {
         CGContextAddLineToPoint(ctx, kOffsetX + i * kStepX, kGraphHeight - maxGraphHeight * data[i]);
     }
@@ -104,7 +102,7 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3, 0.75, 0.3, 0.44, 0.88, 0.77,
     for (int i = 0; i < howMany; i++)
     {
         CGContextMoveToPoint(context, kOffsetX + i * kStepX, kGraphTop);
-        CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphBottom-20);
+        CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphBottom-33);
     }
     
     
@@ -136,16 +134,9 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3, 0.75, 0.3, 0.44, 0.88, 0.77,
     CGContextSetTextDrawingMode(context, kCGTextFill);
     CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0 green:0 blue:0 alpha:1.0] CGColor]);
     
-    int i=0;
-    int j=0;
-    while (i<30) {
-        if (j<=6) {
-            NSString *theText = [NSString stringWithFormat:@"%@", [weekdays objectAtIndex:j]];
-            CGContextShowTextAtPoint(context, kOffsetX + i * kStepX - 8, kGraphBottom - 5, [theText cStringUsingEncoding:NSUTF8StringEncoding], [theText length]);
-        } else {
-            j=0;
-        }
-        i++; j++;
+    for (int i = 0; i<[weekdays count]; i++) {
+        NSString *theText = [NSString stringWithFormat:@"%@", [weekdays objectAtIndex:i]];
+        CGContextShowTextAtPoint(context, kOffsetX + i * kStepX - 8, kGraphBottom - 20, [theText cStringUsingEncoding:NSUTF8StringEncoding], [theText length]);
     }
     
     

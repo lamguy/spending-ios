@@ -139,12 +139,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="n9L-cS-TTv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="0Us-I6-UhT"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="top" secondItem="n9L-cS-TTv" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2f7-pj-hZ2"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="4KH-T8-pvg"/>
                             <constraint firstItem="j9Y-VS-Nk6" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8ul-Nq-lXB"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="FDo-Ux-lyv"/>
                             <constraint firstItem="j9Y-VS-Nk6" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="HJK-zs-gxq"/>
+                            <constraint firstItem="n9L-cS-TTv" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="9" id="HdT-Xs-TKo"/>
                             <constraint firstItem="n9L-cS-TTv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="53" id="MuD-eJ-DHy"/>
                             <constraint firstItem="Dgf-bI-g9N" firstAttribute="top" secondItem="3" secondAttribute="top" constant="139" id="o9s-um-vBy"/>
                             <constraint firstAttribute="trailing" secondItem="n9L-cS-TTv" secondAttribute="trailing" constant="10" id="ojA-kj-vVu"/>
@@ -310,31 +310,15 @@
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="49" id="2V2-ok-ibM"/>
-                                                        <constraint firstAttribute="width" constant="269" id="5fo-jW-iHJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vX9-AM-G1b">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="26" id="Z8E-my-1Jq"/>
-                                                        <constraint firstAttribute="height" constant="28" id="k5q-VM-FgM"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" image="list.png">
-                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="vX9-AM-G1b" firstAttribute="top" secondItem="wGP-f3-wxH" secondAttribute="top" constant="4" id="60z-CK-62b"/>
-                                            <constraint firstAttribute="trailing" secondItem="vX9-AM-G1b" secondAttribute="trailing" constant="10" type="user" id="bSM-QS-POU"/>
+                                            <constraint firstItem="Bd6-bK-4Ex" firstAttribute="trailing" secondItem="wGP-f3-wxH" secondAttribute="trailing" type="default" id="77z-rs-3c1"/>
                                             <constraint firstItem="Bd6-bK-4Ex" firstAttribute="leading" secondItem="wGP-f3-wxH" secondAttribute="leading" type="default" id="tnx-8o-dPU"/>
                                             <constraint firstItem="Bd6-bK-4Ex" firstAttribute="top" secondItem="wGP-f3-wxH" secondAttribute="top" type="default" id="zwV-gO-iYR"/>
                                         </constraints>
@@ -392,7 +376,6 @@
                         <outlet property="amount" destination="m3q-aL-6Cb" id="ffy-UY-kkK"/>
                         <outlet property="buttonGrid" destination="h60-sJ-5B1" id="fVK-gN-Wcj"/>
                         <outlet property="catScroller" destination="sMw-QQ-R1T" id="dDg-Fu-4yU"/>
-                        <outlet property="list" destination="vX9-AM-G1b" id="yuh-qm-rTE"/>
                         <outlet property="name" destination="5oH-cm-As5" id="WUk-Vn-tj4"/>
                         <outlet property="note" destination="Bd6-bK-4Ex" id="Pa4-Wd-rzO"/>
                         <outlet property="numGrid" destination="d56-uc-e2j" id="uIz-QN-d0H"/>
@@ -424,7 +407,6 @@
     </scenes>
     <resources>
         <image name="add.png" width="39" height="22"/>
-        <image name="list.png" width="8" height="10"/>
     </resources>
     <classes>
         <class className="AddSpendViewController" superclassName="UITableViewController">
