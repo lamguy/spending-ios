@@ -13,6 +13,7 @@
 #import "NumGrid.h"
 #import "sqlite3.h"
 #import "Record.h"
+#import "SpendDate.h"
 
 
 
@@ -57,6 +58,9 @@ NSString *KeyCellIdentifier = @"KeyCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSDate *spendDate = [SpendDate currentDate].selectedDate;
+    NSLog(@"Selected Date: %@", spendDate);
+    
     
     [self createGridView];
     [self createNumBoard];
@@ -398,7 +402,11 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         NSString *cleanAmount = [self.amount.text stringByReplacingOccurrencesOfString:@"." withString:@""];
         
-        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, ADDRESS, AMOUNT) values ('%d', '%s', '%s', '%s', '%lld')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [locatedAt UTF8String], [cleanAmount longLongValue]];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *dateString=[dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
+        
+        NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, ADDRESS, AMOUNT, DATE_ADDED) values ('%d', '%s', '%s', '%s', '%lld', '%s')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [locatedAt UTF8String], [cleanAmount longLongValue], [dateString UTF8String]];
         
         const char *insert_spending_stmt = [insertStmt UTF8String];
         

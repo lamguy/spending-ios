@@ -7,10 +7,13 @@
 //
 
 #import "GraphingViewController.h"
+#import "SpendDate.h"
 
 @implementation GraphingViewController
 float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
 CGRect touchAreas[kNumberOfBars];
+NSInteger week;
+NSArray *weekdate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -141,7 +144,10 @@ CGRect touchAreas[kNumberOfBars];
     {
         if (CGRectContainsPoint(touchAreas[i], point))
         {
-            NSLog(@"Tapped a bar with index %d, value %f", i, data[i]);
+            NSLog(@"Tapped a bar with index %d, value %f. Selected date changed to: %@", i, data[i], weekdate[i]);
+            
+            [SpendDate currentDate].selectedDate = weekdate[i];
+            
             break;
         }
     }
@@ -150,6 +156,13 @@ CGRect touchAreas[kNumberOfBars];
 
 - (void)drawRect:(CGRect)rect
 {
+    
+    NSDate *date = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
+    week = [components week];
+    weekdate = [self allDatesInWeek:week];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.5);
     CGContextSetStrokeColorWithColor(context, [[UIColor lightGrayColor] CGColor]);
@@ -189,20 +202,7 @@ CGRect touchAreas[kNumberOfBars];
     [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
     NSArray *weekdays = [df shortWeekdaySymbols];
     
-    NSDate *date = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
-    NSInteger week = [components week];
-    
-    
-    NSArray *weekdate = [self allDatesInWeek:week];
-    
-    for (int i=0; i<[weekdate count]; i++) {
-        NSLog(@"%@", [weekdate objectAtIndex:i]);
-    }
-    
-    NSLog(@"%d", week);
-    NSLog(@"%d", [weekdate count]);
+    NSLog(@"Current weeknumber: %d", week);
     
     // Horizontial point chart text
     CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
