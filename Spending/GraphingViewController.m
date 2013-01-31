@@ -137,7 +137,6 @@ CGRect touchAreas[kNumberOfBars];
 {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    NSLog(@"Touch x:%f, y:%f", point.x, point.y);
     for (int i = 0; i < kNumberOfBars; i++)
     {
         if (CGRectContainsPoint(touchAreas[i], point))
@@ -186,9 +185,24 @@ CGRect touchAreas[kNumberOfBars];
     
     // Get an array of weekdays
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"EEE"];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:[[NSLocale preferredLanguages] objectAtIndex:0]]];
     NSArray *weekdays = [df shortWeekdaySymbols];
+    
+    NSDate *date = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
+    NSInteger week = [components week];
+    
+    
+    NSArray *weekdate = [self allDatesInWeek:week];
+    
+    for (int i=0; i<[weekdate count]; i++) {
+        NSLog(@"%@", [weekdate objectAtIndex:i]);
+    }
+    
+    NSLog(@"%d", week);
+    NSLog(@"%d", [weekdate count]);
     
     // Horizontial point chart text
     CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
@@ -207,6 +221,33 @@ CGRect touchAreas[kNumberOfBars];
         NSString *theRange = [NSString stringWithFormat:@"%d", i*100];
         CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - 30 - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
     }
+}
+
+-(NSArray*)allDatesInWeek:(int)weekNumber {
+    // determine weekday of first day of year:
+    NSCalendar *greg = [[NSCalendar alloc]
+                        initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    comps.day = 1;
+    NSDate *today = [NSDate date];
+    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today  options:0];
+    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
+    comps = [greg components:NSYearCalendarUnit fromDate:[NSDate date]];
+    comps.day = 1;
+    comps.month = 1;
+    comps.hour = 12;
+    NSDate *start = [greg dateFromComponents:comps];
+    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
+    if (weekNumber==1) {
+        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
+    } else {
+        start = [start dateByAddingTimeInterval:kDay*(8-comps.weekday+7*(weekNumber-2))];
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    for (int i = 0; i<7; i++) {
+        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
+    }
+    return [NSArray arrayWithArray:result];
 }
 
 @end
