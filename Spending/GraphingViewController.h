@@ -19,6 +19,7 @@
 
 #define kBarTop 10
 #define kBarWidth 40
+#define kNumberOfBars 7
 
 @interface GraphingViewController : UIView
 

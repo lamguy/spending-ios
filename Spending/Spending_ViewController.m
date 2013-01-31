@@ -74,6 +74,8 @@
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    // For selecting cell.
+    tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
     

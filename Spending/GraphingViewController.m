@@ -10,6 +10,7 @@
 
 @implementation GraphingViewController
 float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
+CGRect touchAreas[kNumberOfBars];
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -87,6 +88,66 @@ float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
     
 }
 
+- (void)drawBar:(CGRect)rect context:(CGContextRef)ctx
+{
+    // Prepare the resources
+    CGFloat components[12] = {0.2314, 0.5686, 0.4, 1.0,  // Start color
+        0.4727, 1.0, 0.8157, 1.0, // Second color
+        0.2392, 0.5686, 0.4118, 1.0}; // End color
+    CGFloat locations[3] = {0.0, 0.33, 1.0};
+    size_t num_locations = 3;
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
+    //CGPoint startPoint = rect.origin;
+    //CGPoint endPoint = CGPointMake(rect.origin.x + rect.size.width, rect.origin.y);
+    // Create and apply the clipping path
+    CGContextBeginPath(ctx);
+    CGContextSetGrayFillColor(ctx, 0.2, 0.7);
+    CGContextMoveToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
+    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMaxY(rect));
+    CGContextClosePath(ctx);
+    CGContextSaveGState(ctx);
+    CGContextClip(ctx);
+    // Draw the gradient
+    //CGContextDrawLinearGradient(ctx, gradient, startPoint, endPoint, 0);
+    CGContextRestoreGState(ctx);
+    // Release the resources
+    CGColorSpaceRelease(colorspace);
+    CGGradientRelease(gradient);
+}
+
+- (void)drawBarGraphWithContext:(CGContextRef)ctx
+{
+    // Draw the bars
+    float maxBarHeight = kGraphHeight - kBarTop - kOffsetY;
+    for (int i = 0; i < kNumberOfBars; i++)
+    {
+        float barX = 20 + i * kStepX - kBarWidth / 2;
+        float barY = kBarTop + maxBarHeight - maxBarHeight;
+        float barHeight = maxBarHeight + 20;
+        CGRect barRect = CGRectMake(barX, barY, kBarWidth, barHeight);
+        [self drawBar:barRect context:ctx];
+        touchAreas[i] = barRect;
+    }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self];
+    NSLog(@"Touch x:%f, y:%f", point.x, point.y);
+    for (int i = 0; i < kNumberOfBars; i++)
+    {
+        if (CGRectContainsPoint(touchAreas[i], point))
+        {
+            NSLog(@"Tapped a bar with index %d, value %f", i, data[i]);
+            break;
+        }
+    }
+}
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -119,6 +180,7 @@ float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
     CGContextSetLineDash(context, 0, NULL, 0); // Remove the dash
     
     [self drawLineGraphWithContext:context];
+    [self drawBarGraphWithContext:context];
     
     
     
