@@ -9,7 +9,7 @@
 #import "GraphingViewController.h"
 
 @implementation GraphingViewController
-float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
+float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -75,7 +75,7 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
     CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] CGColor]);
     CGContextSetRGBStrokeColor(ctx, (240.0/255.0), (144.0/255.0), (111.0/255.0), 1.0);
     CGContextSetLineWidth(ctx, 2.0);
-    for (int i = 0; i < sizeof(data) - 1; i++)
+    for (int i = 0; i < 7; i++)
     {
         float x = kOffsetX + i * kStepX;
         float y = kGraphHeight - maxGraphHeight * data[i];
@@ -97,7 +97,7 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
     CGContextSetLineDash(context, 0.0, dash, 2);
     
     // How many lines?
-    int howMany = (kDefaultGraphWidth - kOffsetX) / kStepX;
+    int howMany = 7;
     // Here the lines go
     for (int i = 0; i < howMany; i++)
     {
@@ -106,11 +106,11 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
     }
     
     
-    int howManyHorizontal = (kGraphBottom - kGraphTop - kOffsetY) / kStepY;
+    int howManyHorizontal = 2;
     for (int i = 0; i <= howManyHorizontal; i++)
     {
-        CGContextMoveToPoint(context, kOffsetX, kGraphBottom - kOffsetY - i * kStepY);
-        CGContextAddLineToPoint(context, kDefaultGraphWidth, kGraphBottom - kOffsetY - i * kStepY);
+        CGContextMoveToPoint(context, kOffsetX, kGraphBottom - 33 - i * kStepY);
+        CGContextAddLineToPoint(context, kDefaultGraphWidth, kGraphBottom - 33 - i * kStepY);
     }
     
     
@@ -143,7 +143,7 @@ float data[] = {0.7, 0.3, 0.9, 1.0, 0.3, 0.85, 0.3};
     for (int i = 1; i<3; i++)
     {
         NSString *theRange = [NSString stringWithFormat:@"%d", i*100];
-        CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - kOffsetY - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
+        CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - 30 - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
     }
 }
 
