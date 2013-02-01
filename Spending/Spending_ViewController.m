@@ -52,14 +52,21 @@
 @end
 
 @implementation Spending_ViewController
-
 @synthesize graphScroller;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+    }
+
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self createOrOpenDB];
     
     // Change view background app-wide
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
@@ -80,51 +87,26 @@
     [self.view addGestureRecognizer:tap];
     
     
+    //init array of all the records need to shown up on tableview
     arrayOfRecord = [[NSMutableArray alloc]init];
-    [[self recordTableView]setDelegate:self];
-    [[self recordTableView]setDataSource:self];    
+    
+    //begin to create database if not existed and load data records
+    [self createOrOpenDB];
+    [self readDataFromDatabase];
+    [self.recordTableView reloadData];
     
     
-    NSLog(@"opend db to pull");
-    
-    sqlite3_stmt *query_stmt;
-    
-    if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
-        NSLog(@"opend db to pull");
-        [arrayOfRecord removeAllObjects ];
-        
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *dateString=[dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
-        
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS WHERE DATE_ADDED=?"];
-        
-        if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
-            sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
-            NSLog(@"prepared to pull");
-            while (sqlite3_step(query_stmt)==SQLITE_ROW) {
-                NSInteger ID=sqlite3_column_int(query_stmt, 0);
-                NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
-                NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
-                NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
-                
-                Record *record = [[Record alloc]init];
-                
-                [record setID:ID];
-                [record setName:name];
-                [record setNote:note];
-                [record setAmount:[amount intValue]];
-                
-                [arrayOfRecord addObject:record];
-                
-                NSLog(@"pulled");
-            }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:@"updateTableNotification" object:nil];
+    [super viewDidLoad];
 
-            //Now we need to reverse the array of our records for better UX
-            [arrayOfRecord reverse];
-        }
-    }
+}
 
+
+-(void)reloadTableView:(NSNotification *) notification
+{
+    NSLog(@"notification recieved:%@", notification.userInfo);
+    [self readDataFromDatabase];
+    [self.recordTableView reloadData];
 }
 
 -(void)createOrOpenDB
@@ -147,6 +129,45 @@
             const char *sql_stmt = "CREATE TABLE IF NOT EXISTS SPENDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, CAT_ID INTEGER, NAME TEXT, NOTE TEXT, ADDRESS TEXT, AMOUNT INETEGER, DATE_ADDED TEXT)";
             sqlite3_exec(recordDB, sql_stmt, NULL, NULL, &error);
             sqlite3_close(recordDB);
+        }
+    }
+}
+
+-(void)readDataFromDatabase
+{
+    
+    sqlite3_stmt *query_stmt;
+    
+    if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
+        [arrayOfRecord removeAllObjects ];
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateString=[dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
+        
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS WHERE DATE_ADDED=?"];
+        
+        if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
+            sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
+            while (sqlite3_step(query_stmt)==SQLITE_ROW) {
+                NSInteger ID=sqlite3_column_int(query_stmt, 0);
+                NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
+                NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
+                NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
+                
+                Record *record = [[Record alloc]init];
+                
+                [record setID:ID];
+                [record setName:name];
+                [record setNote:note];
+                [record setAmount:[amount intValue]];
+                
+                [arrayOfRecord addObject:record];
+                
+            }
+            
+            //Now we need to reverse the array of our records for better UX
+            [arrayOfRecord reverse];
         }
     }
 }
@@ -232,9 +253,7 @@
         [self deleteRecord:[NSString stringWithFormat:@"DELETE FROM SPENDS WHERE ID=%d", record.ID]];
         
         [arrayOfRecord removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [self.recordTableView reloadData];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
     }
 }
 
@@ -256,6 +275,11 @@
 - (void)dismissKeyboard
 {
     [self.view endEditing:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    NSLog(@"viewWillAppear called");
+    
 }
 
 @end

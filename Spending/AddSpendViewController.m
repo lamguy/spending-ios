@@ -423,12 +423,13 @@ NSString *KeyCellIdentifier = @"KeyCell";
         {
             NSLog(@"DB closed after inserting");
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
     }
     
     NSLog(@"Error: %s", error);
         
     [self dismissViewControllerAnimated:YES completion:^{
-        
     }];
 }
 
