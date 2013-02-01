@@ -197,7 +197,10 @@
     botLine.backgroundColor = [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0].CGColor;
     [headerView.layer addSublayer:botLine];
     
-    NSString *sectionTitle = @"Monday, January 28, 2013";
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"EEEE, MMMM d, YYYY"];
+    
+    NSString *sectionTitle = [dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
     NSString *uppercaseSectionTitle = [sectionTitle uppercaseString];
     
     // Create label with section title
