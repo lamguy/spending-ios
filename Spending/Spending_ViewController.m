@@ -8,6 +8,7 @@
 
 #import "Spending_ViewController.h"
 #import "SpendRecordCell.h"
+#import "SpendDate.h"
 
 @interface Spending_ViewController ()
 {
@@ -92,9 +93,14 @@
         NSLog(@"opend db to pull");
         [arrayOfRecord removeAllObjects ];
         
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS"];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateString=[dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
+        
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS WHERE DATE_ADDED=?"];
         
         if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
+            sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
             NSLog(@"prepared to pull");
             while (sqlite3_step(query_stmt)==SQLITE_ROW) {
                 NSInteger ID=sqlite3_column_int(query_stmt, 0);

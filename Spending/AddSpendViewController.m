@@ -403,7 +403,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         NSString *cleanAmount = [self.amount.text stringByReplacingOccurrencesOfString:@"." withString:@""];
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
         NSString *dateString=[dateFormat stringFromDate:[SpendDate currentDate].selectedDate];
         
         NSString *insertStmt = [NSString stringWithFormat:@"INSERT INTO SPENDS(CAT_ID, NAME, NOTE, ADDRESS, AMOUNT, DATE_ADDED) values ('%d', '%s', '%s', '%s', '%lld', '%s')", catID, [self.name.text UTF8String], [self.note.text UTF8String], [locatedAt UTF8String], [cleanAmount longLongValue], [dateString UTF8String]];
