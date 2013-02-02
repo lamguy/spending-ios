@@ -151,6 +151,9 @@ NSArray *weekdate;
             NSLog(@"Tapped a bar with index %d, value %d. Selected date changed to: %@", i, [[data objectAtIndex:i] integerValue], weekdate[i]);
             
             [SpendDate currentDate].selectedDate = weekdate[i];
+            
+            
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
         }
     }

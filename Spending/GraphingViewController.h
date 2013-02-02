@@ -16,7 +16,7 @@
 #define kGraphTop 0
 #define kStepY 20
 #define kOffsetY 15
-#define kCircleRadius 3
+#define kCircleRadius 3.5
 
 #define kBarTop 10
 #define kBarWidth 40
