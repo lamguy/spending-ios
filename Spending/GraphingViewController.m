@@ -10,7 +10,10 @@
 #import "SpendDate.h"
 
 @implementation GraphingViewController
-float data[] = {0.7, 0.0, 0.0, 1.0, 0.3, 0.85, 0.3};
+sqlite3 *recordDB;
+NSString *dbPathString;
+NSMutableArray *data;
+int maxValue = 20000;
 CGRect touchAreas[kNumberOfBars];
 NSInteger week;
 NSArray *weekdate;
@@ -18,7 +21,7 @@ NSArray *weekdate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self) {        
     }
     return self;
 }
@@ -69,10 +72,11 @@ NSArray *weekdate;
     
     
     CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, kOffsetX, kGraphHeight - maxGraphHeight * data[0]);
+    CGContextMoveToPoint(ctx, kOffsetX, kGraphHeight - maxGraphHeight * [[data objectAtIndex:0] integerValue]/maxValue);
     for (int i = 0; i < 7; i++)
     {
-        CGContextAddLineToPoint(ctx, kOffsetX + i * kStepX, kGraphHeight - maxGraphHeight * data[i]);
+        NSLog(@"value %d: %@",i, [data objectAtIndex:i]);
+        CGContextAddLineToPoint(ctx, kOffsetX + i * kStepX, kGraphHeight - maxGraphHeight * [[data objectAtIndex:i] integerValue]/maxValue);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     
@@ -82,7 +86,7 @@ NSArray *weekdate;
     for (int i = 0; i < 7; i++)
     {
         float x = kOffsetX + i * kStepX;
-        float y = kGraphHeight - maxGraphHeight * data[i];
+        float y = kGraphHeight - maxGraphHeight * [[data objectAtIndex:i] integerValue]/maxValue;
         CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
         CGContextAddEllipseInRect(ctx, rect);
         
@@ -144,7 +148,7 @@ NSArray *weekdate;
     {
         if (CGRectContainsPoint(touchAreas[i], point))
         {
-            NSLog(@"Tapped a bar with index %d, value %f. Selected date changed to: %@", i, data[i], weekdate[i]);
+            NSLog(@"Tapped a bar with index %d, value %d. Selected date changed to: %@", i, [[data objectAtIndex:i] integerValue], weekdate[i]);
             
             [SpendDate currentDate].selectedDate = weekdate[i];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
@@ -155,12 +159,45 @@ NSArray *weekdate;
 
 - (void)drawRect:(CGRect)rect
 {
+    data = [[NSMutableArray alloc]init];
     
     NSDate *date = [NSDate date];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
     week = [components week];
     weekdate = [self allDatesInWeek:week];
+    
+    
+    sqlite3_stmt *query_stmt;
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [path objectAtIndex:0];
+    
+    dbPathString = [docPath stringByAppendingPathComponent:@"spending.db"];
+    [data removeAllObjects ];
+    
+    for (int i=0; i<[weekdate count]; i++) {
+        NSNumber *amount = [[NSNumber alloc]init];
+        
+        if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
+            
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateString=[dateFormat stringFromDate:weekdate[i]];
+            
+            NSString *querySQL = [NSString stringWithFormat:@"SELECT SUM(AMOUNT) FROM SPENDS WHERE DATE_ADDED=?"];
+            
+            if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
+                sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
+                while (sqlite3_step(query_stmt)==SQLITE_ROW) {
+                    amount = [NSNumber numberWithInt:sqlite3_column_int(query_stmt, 0)];
+                    NSLog(@"%@", amount);
+                    
+                }
+            }
+        }
+        [data addObject:amount];
+    }
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.5);

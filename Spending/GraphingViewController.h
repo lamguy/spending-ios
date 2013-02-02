@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "sqlite3.h"
 #define kGraphHeight 56
 #define kDefaultGraphWidth 300
 #define kOffsetX 20
