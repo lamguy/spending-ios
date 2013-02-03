@@ -95,6 +95,12 @@ NSArray *weekdate;
     
 }
 
+-(void)reloadGraphView:(NSNotification *) notification
+{
+    NSLog(@"graph notification recieved:%@", notification.userInfo);
+    [self setNeedsDisplay];
+}
+
 - (void)drawBar:(CGRect)rect context:(CGContextRef)ctx
 {
     // Prepare the resources
@@ -234,7 +240,6 @@ NSArray *weekdate;
     [self drawBarGraphWithContext:context];
     
     
-    
     // Get an array of weekdays
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -260,6 +265,8 @@ NSArray *weekdate;
         NSString *theRange = [NSString stringWithFormat:@"%d", i*100];
         CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - 30 - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
 }
 
 -(NSArray*)allDatesInWeek:(int)weekNumber {

@@ -425,6 +425,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
     }
     
     NSLog(@"Error: %s", error);
