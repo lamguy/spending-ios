@@ -10,8 +10,8 @@
 #import "sqlite3.h"
 #import "Record.h"
 
-@interface Spending_ViewController : UIViewController<UIAccelerometerDelegate, UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@interface Spending_ViewController : UIViewController<UIAccelerometerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIButton *addNewSpend;
 @property (strong, nonatomic) IBOutlet UIScrollView *graphScroller;
 @property (strong, nonatomic) IBOutlet UITableView *recordTableView;

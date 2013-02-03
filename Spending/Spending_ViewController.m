@@ -13,6 +13,7 @@
 @interface Spending_ViewController ()
 {
     NSMutableArray *arrayOfRecord;
+    NSMutableArray *filterArrayOfRecord;
     NSMutableArray *reversed_arrayOfRecord;
     sqlite3 *recordDB;
     NSString *dbPathString;
@@ -89,6 +90,7 @@
     
     //init array of all the records need to shown up on tableview
     arrayOfRecord = [[NSMutableArray alloc]init];
+    filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfRecord count]];
     
     //begin to create database if not existed and load data records
     [self createOrOpenDB];
@@ -184,7 +186,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [arrayOfRecord count];
+    // Check to see whether the normal table or search results table is being displayed and return the count from the appropriate array
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [filterArrayOfRecord count];
+    } else {
+        return [arrayOfRecord count];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -231,7 +238,16 @@
     static NSString *CellIdentifier = @"SpendingRecordCell";
     SpendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    Record *aRecord = [arrayOfRecord objectAtIndex:indexPath.row];
+    Record *aRecord;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        aRecord = [filterArrayOfRecord objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        aRecord = [arrayOfRecord objectAtIndex:indexPath.row];
+    }
     
     cell.spendName.text = aRecord.name;
     cell.spendLocation.text = aRecord.note;
@@ -290,6 +306,33 @@
 -(void)viewWillAppear:(BOOL)animated {
     NSLog(@"viewWillAppear called");
     
+}
+
+#pragma mark Content Filtering
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [filterArrayOfRecord removeAllObjects];
+    // Filter the array using NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    filterArrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfRecord filteredArrayUsingPredicate:predicate]];
+}
+
+#pragma mark - UISearchDisplayController Delegate Methods
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

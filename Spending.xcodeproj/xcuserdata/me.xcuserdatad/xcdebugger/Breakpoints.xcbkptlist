@@ -58,7 +58,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Spending/Spending_ViewController.h"
-         timestampString = "381412363.34095"
+         timestampString = "381624947.900407"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "19"
@@ -110,25 +110,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Spending/Spending_ViewController.m"
-         timestampString = "381458824.950242"
+         timestampString = "381626060.169544"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
+         startingLineNumber = "148"
+         endingLineNumber = "148"
          landmarkName = "-readDataFromDatabase"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Spending/GraphingViewController.m"
-         timestampString = "381620748.017784"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "231"
-         endingLineNumber = "231"
-         landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
