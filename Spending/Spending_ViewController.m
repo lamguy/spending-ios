@@ -236,7 +236,7 @@
 {
     
     static NSString *CellIdentifier = @"SpendingRecordCell";
-    SpendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    SpendRecordCell *cell = [self.recordTableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     Record *aRecord;
     
