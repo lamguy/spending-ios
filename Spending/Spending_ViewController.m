@@ -255,7 +255,9 @@
     
     cell.spendName.text = aRecord.name;
     cell.spendLocation.text = aRecord.note;
-    cell.spendCat.image = [UIImage imageNamed:arrayOfCatImages[aRecord.cat_id]];
+    
+    UIImage *originalCatImage = [UIImage imageNamed:arrayOfCatImages[aRecord.cat_id]];
+    cell.spendCat.image = originalCatImage;
     
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc]init];
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];

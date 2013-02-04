@@ -70,7 +70,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpt-lE-brs">
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="176" id="j6C-wd-fEy"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="Sqf-OP-eiF"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -78,6 +78,7 @@
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRC-a1-XgC">
                                                                     <constraints>
+                                                                        <constraint firstAttribute="width" constant="176" id="QlB-J4-JR5"/>
                                                                         <constraint firstAttribute="height" constant="21" id="ahJ-0t-GGO"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
@@ -98,15 +99,14 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="Bpt-lE-brs" secondAttribute="bottom" constant="20" type="default" id="4rf-oV-vBK"/>
-                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="NCd-Wg-vts" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9Rs-Gd-Igf"/>
+                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="Bpt-lE-brs" secondAttribute="leading" type="default" id="6S4-gf-15X"/>
+                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="51" id="7UL-gc-g4J"/>
                                                             <constraint firstItem="NCd-Wg-vts" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="9" id="DgZ-ym-8Eu"/>
                                                             <constraint firstItem="WCk-WY-bj6" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="11" id="JRF-Te-XOd"/>
                                                             <constraint firstItem="NCd-Wg-vts" firstAttribute="centerY" secondItem="8nP-R7-qQp" secondAttribute="centerY" type="default" id="Nwp-Mu-597"/>
-                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="Bpt-lE-brs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="fmA-iZ-2sC"/>
-                                                            <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="MRC-a1-XgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gvq-eb-0w7"/>
-                                                            <constraint firstItem="Bpt-lE-brs" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="4" type="user" id="rWp-Kj-pEo"/>
-                                                            <constraint firstItem="Bpt-lE-brs" firstAttribute="leading" secondItem="NCd-Wg-vts" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="z0U-Vi-f9i"/>
+                                                            <constraint firstItem="Bpt-lE-brs" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="3" id="ivx-gb-R0G"/>
+                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="trailing" secondItem="Bpt-lE-brs" secondAttribute="trailing" type="default" id="ug3-Zu-Lss"/>
+                                                            <constraint firstAttribute="trailing" secondItem="WCk-WY-bj6" secondAttribute="trailing" constant="9" id="v2k-vP-caa"/>
                                                             <constraint firstItem="MRC-a1-XgC" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="20" type="default" id="zzC-5r-KQp"/>
                                                         </constraints>
                                                         <connections>
@@ -425,6 +425,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendCat" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
             </relationships>
