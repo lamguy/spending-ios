@@ -314,7 +314,7 @@
     // Remove all objects from the filtered search array
     [filterArrayOfRecord removeAllObjects];
     // Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@ OR SELF.note contains[c] %@",searchText, searchText];
     filterArrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfRecord filteredArrayUsingPredicate:predicate]];
 }
 
