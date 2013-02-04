@@ -80,7 +80,6 @@ NSArray *weekdate;
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     
-    CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] CGColor]);
     CGContextSetRGBStrokeColor(ctx, (240.0/255.0), (144.0/255.0), (111.0/255.0), 1.0);
     CGContextSetLineWidth(ctx, 2.0);
     for (int i = 0; i < 7; i++)
@@ -105,21 +104,26 @@ NSArray *weekdate;
         
         CGRect rect;
         
-        switch (result) {
-            case NSOrderedSame:
-                rect = CGRectMake(x - (kCircleRadius + 1.5), y - (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5));
-                break;
-            case NSOrderedAscending:
-            case NSOrderedDescending:
-            default:
-                rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
-                break;
+        if(result == NSOrderedSame)
+        {
+            CGContextBeginPath(ctx);
+            CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:240.0/255.0 green:144.0/255.0 blue:111.0/255.0 alpha:1.0] CGColor]);
+            rect = CGRectMake(x - (kCircleRadius + 1.5), y - (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5));
+            CGContextAddEllipseInRect(ctx, rect);
+            CGContextDrawPath(ctx, kCGPathFillStroke);
+            
+        }
+        else
+        {
+            CGContextBeginPath(ctx);
+            CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] CGColor]);
+            rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+            CGContextAddEllipseInRect(ctx, rect);
+            CGContextDrawPath(ctx, kCGPathFillStroke);
         }
         
-        CGContextAddEllipseInRect(ctx, rect);
         
     }
-    CGContextDrawPath(ctx, kCGPathFillStroke);
     
 }
 
