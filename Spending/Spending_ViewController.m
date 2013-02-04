@@ -113,7 +113,7 @@
     //setting up animation for reload data. From left to right.
     //TODO: Check if current date is larger or smaller to determine the
     //animation animates from left or right
-    [self.recordTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
+    [self.recordTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
 }
 
 -(void)createOrOpenDB
