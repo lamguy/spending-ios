@@ -87,7 +87,35 @@ NSArray *weekdate;
     {
         float x = kOffsetX + i * kStepX;
         float y = kGraphHeight - maxGraphHeight * [[data objectAtIndex:i] integerValue]/maxValue;
-        CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+        
+        NSDate *currentWeekDate = weekdate[i];
+        NSDate *currentSelectedDate = [SpendDate currentDate].selectedDate;
+        NSDateComponents *date1Components = [calendar components:comps fromDate:currentSelectedDate];
+        NSDateComponents *date2Components = [calendar components:comps fromDate:currentWeekDate];
+        
+        currentSelectedDate = [calendar dateFromComponents:date1Components];
+        currentWeekDate = [calendar dateFromComponents:date2Components];
+        
+        NSComparisonResult result = [currentSelectedDate compare:currentWeekDate];
+        
+        NSLog(@"Comparing selected date: %@ with weekday[%d]: %@", currentSelectedDate, i, currentWeekDate);
+        
+        CGRect rect;
+        
+        switch (result) {
+            case NSOrderedSame:
+                rect = CGRectMake(x - (kCircleRadius + 1.5), y - (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5), 2 * (kCircleRadius + 1.5));
+                break;
+            case NSOrderedAscending:
+            case NSOrderedDescending:
+            default:
+                rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+                break;
+        }
+        
         CGContextAddEllipseInRect(ctx, rect);
         
     }
@@ -158,9 +186,8 @@ NSArray *weekdate;
             
             [SpendDate currentDate].selectedDate = weekdate[i];
             
-            
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
         }
     }
 }
