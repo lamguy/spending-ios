@@ -213,7 +213,7 @@ NSArray *weekdate;
     [data removeAllObjects ];
     
     for (int i=0; i<[weekdate count]; i++) {
-        NSNumber *amount = [[NSNumber alloc]init];
+        NSNumber *amount = [[NSNumber alloc] initWithInt:0];
         
         if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
             
