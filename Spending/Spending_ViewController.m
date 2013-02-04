@@ -17,6 +17,7 @@
     NSMutableArray *reversed_arrayOfRecord;
     sqlite3 *recordDB;
     NSString *dbPathString;
+    NSArray *arrayOfCatImages;
 }
 
 @end
@@ -68,6 +69,7 @@
 
 - (void)viewDidLoad
 {
+    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_gift.png", @"cat_babies.png", @"cat_pets.png", @"cat_personal.png", @"cat_medical.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_books.png", nil];
     
     // Change view background app-wide
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]];
@@ -158,6 +160,7 @@
             sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
             while (sqlite3_step(query_stmt)==SQLITE_ROW) {
                 NSInteger ID=sqlite3_column_int(query_stmt, 0);
+                NSInteger cat_ID=sqlite3_column_int(query_stmt, 1);
                 NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
                 NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
                 NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
@@ -165,6 +168,7 @@
                 Record *record = [[Record alloc]init];
                 
                 [record setID:ID];
+                [record setCat_id:cat_ID];
                 [record setName:name];
                 [record setNote:note];
                 [record setAmount:[amount intValue]];
@@ -251,6 +255,7 @@
     
     cell.spendName.text = aRecord.name;
     cell.spendLocation.text = aRecord.note;
+    cell.spendCat.image = [UIImage imageNamed:arrayOfCatImages[aRecord.cat_id]];
     
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc]init];
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];

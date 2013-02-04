@@ -70,7 +70,7 @@
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpt-lE-brs">
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="200" id="ftF-gs-SER"/>
+                                                                        <constraint firstAttribute="width" constant="176" id="j6C-wd-fEy"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -93,21 +93,25 @@
                                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </label>
+                                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="cat_general.png" translatesAutoresizingMaskIntoConstraints="NO" id="NCd-Wg-vts"/>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="Bpt-lE-brs" secondAttribute="bottom" constant="20" type="default" id="4rf-oV-vBK"/>
-                                                            <constraint firstItem="Bpt-lE-brs" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="20" type="default" id="GLb-Ak-kcU"/>
+                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="NCd-Wg-vts" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9Rs-Gd-Igf"/>
+                                                            <constraint firstItem="NCd-Wg-vts" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="9" id="DgZ-ym-8Eu"/>
                                                             <constraint firstItem="WCk-WY-bj6" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="11" id="JRF-Te-XOd"/>
-                                                            <constraint firstItem="MRC-a1-XgC" firstAttribute="leading" secondItem="8nP-R7-qQp" secondAttribute="leading" constant="20" type="default" id="bx7-Bp-cnk"/>
+                                                            <constraint firstItem="NCd-Wg-vts" firstAttribute="centerY" secondItem="8nP-R7-qQp" secondAttribute="centerY" type="default" id="Nwp-Mu-597"/>
                                                             <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="Bpt-lE-brs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="fmA-iZ-2sC"/>
                                                             <constraint firstItem="WCk-WY-bj6" firstAttribute="leading" secondItem="MRC-a1-XgC" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gvq-eb-0w7"/>
                                                             <constraint firstItem="Bpt-lE-brs" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="4" type="user" id="rWp-Kj-pEo"/>
+                                                            <constraint firstItem="Bpt-lE-brs" firstAttribute="leading" secondItem="NCd-Wg-vts" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="z0U-Vi-f9i"/>
                                                             <constraint firstItem="MRC-a1-XgC" firstAttribute="top" secondItem="8nP-R7-qQp" secondAttribute="top" constant="20" type="default" id="zzC-5r-KQp"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="spendAmount" destination="WCk-WY-bj6" id="sal-G9-2nD"/>
+                                                            <outlet property="spendCat" destination="NCd-Wg-vts" id="Md7-N4-QLD"/>
                                                             <outlet property="spendLocation" destination="MRC-a1-XgC" id="wWU-sf-xGP"/>
                                                             <outlet property="spendName" destination="Bpt-lE-brs" id="WZC-Vz-kmE"/>
                                                             <segue destination="opv-yT-FKj" kind="modal" id="3Wh-l2-rde"/>
@@ -384,6 +388,7 @@
     </scenes>
     <resources>
         <image name="add.png" width="39" height="22"/>
+        <image name="cat_general.png" width="27" height="28"/>
     </resources>
     <classes>
         <class className="AddSpendViewController" superclassName="UITableViewController">

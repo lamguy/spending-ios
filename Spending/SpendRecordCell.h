@@ -12,5 +12,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *spendName;
 @property (strong, nonatomic) IBOutlet UILabel *spendLocation;
 @property (strong, nonatomic) IBOutlet UILabel *spendAmount;
+@property (strong, nonatomic) IBOutlet UIImageView *spendCat;
 
 @end
