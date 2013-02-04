@@ -106,7 +106,7 @@
 
 -(void)reloadTableView:(NSNotification *) notification
 {
-    NSLog(@"notification recieved:%@", notification.userInfo);
+    NSLog(@"Reload Table notification recieved:%@", notification.userInfo);
     [self readDataFromDatabase];
     [self.recordTableView reloadData];
     

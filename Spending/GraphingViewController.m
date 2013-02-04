@@ -75,7 +75,6 @@ NSArray *weekdate;
     CGContextMoveToPoint(ctx, kOffsetX, kGraphHeight - maxGraphHeight * [[data objectAtIndex:0] integerValue]/maxValue);
     for (int i = 0; i < 7; i++)
     {
-        NSLog(@"value %d: %@",i, [data objectAtIndex:i]);
         CGContextAddLineToPoint(ctx, kOffsetX + i * kStepX, kGraphHeight - maxGraphHeight * [[data objectAtIndex:i] integerValue]/maxValue);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
@@ -100,8 +99,6 @@ NSArray *weekdate;
         
         NSComparisonResult result = [currentSelectedDate compare:currentWeekDate];
         
-        NSLog(@"Comparing selected date: %@ with weekday[%d]: %@", currentSelectedDate, i, currentWeekDate);
-        
         CGRect rect;
         
         if(result == NSOrderedSame)
@@ -124,12 +121,13 @@ NSArray *weekdate;
         
         
     }
+    [self setNeedsDisplay];
     
 }
 
 -(void)reloadGraphView:(NSNotification *) notification
 {
-    NSLog(@"graph notification recieved:%@", notification.userInfo);
+    NSLog(@"Graph notification recieved:%@", notification.userInfo);
     [self setNeedsDisplay];
 }
 
@@ -161,6 +159,7 @@ NSArray *weekdate;
     // Release the resources
     CGColorSpaceRelease(colorspace);
     CGGradientRelease(gradient);
+    [self setNeedsDisplay];
 }
 
 - (void)drawBarGraphWithContext:(CGContextRef)ctx
@@ -176,6 +175,7 @@ NSArray *weekdate;
         [self drawBar:barRect context:ctx];
         touchAreas[i] = barRect;
     }
+    [self setNeedsDisplay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -207,7 +207,6 @@ NSArray *weekdate;
     week = [components week];
     weekdate = [self allDatesInWeek:week];
     
-    
     sqlite3_stmt *query_stmt;
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -230,9 +229,7 @@ NSArray *weekdate;
             if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
                 sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
                 while (sqlite3_step(query_stmt)==SQLITE_ROW) {
-                    amount = [NSNumber numberWithInt:sqlite3_column_int(query_stmt, 0)];
-                    NSLog(@"%@", amount);
-                    
+                    amount = [NSNumber numberWithInt:sqlite3_column_int(query_stmt, 0)];                    
                 }
             }
         }

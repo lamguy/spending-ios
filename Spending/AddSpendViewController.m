@@ -204,7 +204,6 @@ NSString *KeyCellIdentifier = @"KeyCell";
 - (PSUICollectionViewCell *)collectionView:(PSUICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (collectionView == _gridView) {
-        NSLog(@"cat cell called");
         
         RecordCellController *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
         
@@ -219,7 +218,6 @@ NSString *KeyCellIdentifier = @"KeyCell";
     }
     else if (collectionView == _numKeyGrid)
     {
-        NSLog(@"num cell called");
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
         [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
         

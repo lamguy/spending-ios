@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Spending/GraphingViewController.m"
-         timestampString = "381640136.265974"
+         timestampString = "381643280.101181"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "221"
-         endingLineNumber = "221"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Spending/GraphingViewController.m"
-         timestampString = "381640136.265974"
+         timestampString = "381643280.101181"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "241"
-         endingLineNumber = "241"
+         startingLineNumber = "238"
+         endingLineNumber = "238"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
