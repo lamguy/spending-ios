@@ -21,7 +21,15 @@ NSArray *weekdate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {        
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super initWithCoder:aDecoder]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
     }
     return self;
 }
@@ -121,7 +129,6 @@ NSArray *weekdate;
         
         
     }
-    [self setNeedsDisplay];
     
 }
 
@@ -159,7 +166,6 @@ NSArray *weekdate;
     // Release the resources
     CGColorSpaceRelease(colorspace);
     CGGradientRelease(gradient);
-    [self setNeedsDisplay];
 }
 
 - (void)drawBarGraphWithContext:(CGContextRef)ctx
@@ -175,7 +181,6 @@ NSArray *weekdate;
         [self drawBar:barRect context:ctx];
         touchAreas[i] = barRect;
     }
-    [self setNeedsDisplay];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -293,8 +298,6 @@ NSArray *weekdate;
         NSString *theRange = [NSString stringWithFormat:@"%d", i*100];
         CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - 30 - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
 }
 
 -(NSArray*)allDatesInWeek:(int)weekNumber {
