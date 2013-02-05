@@ -541,4 +541,38 @@ NSString *KeyCellIdentifier = @"KeyCell";
     return YES;
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float height = 35.0f;
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    switch (indexPath.row) {
+        case 0:
+            height=43;
+            break;
+            
+        case 1:
+            height=35;
+            break;
+            
+        case 2:
+            if (screenSize.height > 480.0f) {
+                height=140;
+            }
+            else
+            {
+                height=55;
+            }
+            break;
+        case 3:
+            height=145;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return height;
+}
+
 @end

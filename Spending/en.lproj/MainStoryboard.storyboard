@@ -210,7 +210,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="d56-uc-e2j">
-                            <rect key="frame" x="0.0" y="280" width="320" height="220"/>
+                            <rect key="frame" x="0.0" y="280" width="320" height="224"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <sections>
@@ -359,6 +359,7 @@
                         <outlet property="catScroller" destination="sMw-QQ-R1T" id="dDg-Fu-4yU"/>
                         <outlet property="name" destination="5oH-cm-As5" id="WUk-Vn-tj4"/>
                         <outlet property="note" destination="Bd6-bK-4Ex" id="Pa4-Wd-rzO"/>
+                        <outlet property="noteCell" destination="wGP-f3-wxH" id="IEl-1z-sNm"/>
                         <outlet property="numGrid" destination="d56-uc-e2j" id="uIz-QN-d0H"/>
                         <outlet property="star" destination="6XC-vg-OtE" id="buq-1e-jND"/>
                     </connections>
@@ -390,56 +391,6 @@
         <image name="add.png" width="39" height="22"/>
         <image name="cat_general.png" width="27" height="28"/>
     </resources>
-    <classes>
-        <class className="AddSpendViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSpendViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="action" name="doneButtonPressed:"/>
-                <relationship kind="action" name="starPressed:"/>
-                <relationship kind="outlet" name="amount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="buttonGrid" candidateClass="UIView"/>
-                <relationship kind="outlet" name="catScroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="geoCoder" candidateClass="CLGeocoder"/>
-                <relationship kind="outlet" name="list" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="locationManager" candidateClass="CLLocationManager"/>
-                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="numGrid" candidateClass="UIView"/>
-                <relationship kind="outlet" name="star" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CLGeocoder" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLGeocoder.h"/>
-        </class>
-        <class className="CLLocationManager" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocationManager.h"/>
-        </class>
-        <class className="GraphingViewController" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SpendRecordCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spendCat" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="Spending_ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Spending_ViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="addNewSpend" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="graphScroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="recordTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

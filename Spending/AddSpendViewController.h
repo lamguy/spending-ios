@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIView *buttonGrid;
 @property (strong, nonatomic) IBOutlet UIView *numGrid;
 @property (weak, nonatomic) IBOutlet UIButton *star;
+@property (strong, nonatomic) IBOutlet UITableViewCell *noteCell;
 @property (strong, nonatomic) IBOutlet UIButton *list;
 @property (strong, nonatomic) IBOutlet UIScrollView *catScroller;
 @property (strong, nonatomic) IBOutlet CLLocationManager *locationManager;
