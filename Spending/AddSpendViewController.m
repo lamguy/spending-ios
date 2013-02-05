@@ -422,14 +422,13 @@ NSString *KeyCellIdentifier = @"KeyCell";
             NSLog(@"DB closed after inserting");
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
-    }
-    
-    NSLog(@"Error: %s", error);
+        NSLog(@"Error: %s", error);
         
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
+        }];
+    }
 }
 
 -(void)dismissKeyboard {
