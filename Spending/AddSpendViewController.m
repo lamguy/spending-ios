@@ -97,7 +97,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     [self.list setBackgroundImage:WhiteButtonImage forState:UIControlStateNormal];
      */
     
-    arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @"00", @"7", @"8", @"9", @"C", nil];
+    arrayOfKeys = [[NSArray alloc]initWithObjects:@"1", @"2", @"3", @"0", @"4", @"5", @"6", @"del", @"7", @"8", @"9", @"C", nil];
     tempAmount=0;
     
     [self.numGrid setBackgroundColor:[UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1.0]];
@@ -219,7 +219,20 @@ NSString *KeyCellIdentifier = @"KeyCell";
     else if (collectionView == _numKeyGrid)
     {
         NumGrid *cell = [collectionView dequeueReusableCellWithReuseIdentifier:KeyCellIdentifier forIndexPath:indexPath];
-        [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
+        
+        if ([[arrayOfKeys objectAtIndex:indexPath.item] isEqualToString:@"del"]) {
+            UIImageView *delImage = [[UIImageView alloc] init];
+            [delImage setImage:[UIImage imageNamed:@"delete.png"]];
+            CGFloat imageWidth = 28.0;
+            CGFloat imageHeight = 20.0;
+            delImage.frame = CGRectMake(20, 12, imageWidth, imageHeight);
+            [cell.contentView addSubview:delImage];
+            [cell.key setText:@""];
+        }
+        else
+        {
+            [cell.key setText:[arrayOfKeys objectAtIndex:indexPath.item]];
+        }
         
         UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(numTapped:)];
         singleTap.numberOfTapsRequired = 1;
@@ -444,10 +457,10 @@ NSString *KeyCellIdentifier = @"KeyCell";
         [cell setSelected:YES];
         [cell.key setTextColor:[UIColor whiteColor]];
         
-        if([cell.key.text isEqualToString:[NSString stringWithFormat:@"00" ]])
+        if([cell.key.text isEqualToString:[NSString stringWithFormat:@"" ]])
         {
-            NSLog(@"tapped 00");
-            tempAmount = tempAmount*100+[cell.key.text longLongValue];
+            NSLog(@"tapped delete");
+            tempAmount = tempAmount/10;
         }
         else if([cell.key.text isEqualToString:[NSString stringWithFormat:@"C" ]])
         {

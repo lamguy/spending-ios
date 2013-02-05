@@ -95,6 +95,7 @@
 		8C6C430916B7B27B004FE0F5 /* NIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C42F416B7B27B004FE0F5 /* NIState.m */; };
 		8C6C430A16B7B27B004FE0F5 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C42F616B7B27B004FE0F5 /* NIViewRecycler.m */; };
 		8C6C430B16B7B27B004FE0F5 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C42F816B7B27B004FE0F5 /* NSString+NimbusCore.m */; };
+		8C80947116C1435C004D5479 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947016C1435C004D5479 /* delete.png */; };
 		8C930BA316B1EB13007BAC32 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */; };
 		8C930BA616B1EBDD007BAC32 /* SpendRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */; };
 		8C930BF616B2E3F2007BAC32 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BDE16B2E3F2007BAC32 /* PSTCollectionView.m */; };
@@ -258,6 +259,7 @@
 		8C6C42F616B7B27B004FE0F5 /* NIViewRecycler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIViewRecycler.m; path = ../../libraries/nimbus/src/core/src/NIViewRecycler.m; sourceTree = "<group>"; };
 		8C6C42F716B7B27B004FE0F5 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../../libraries/nimbus/src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
 		8C6C42F816B7B27B004FE0F5 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../libraries/nimbus/src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
+		8C80947016C1435C004D5479 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8C930BA416B1EBDD007BAC32 /* SpendRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendRecordCell.h; sourceTree = "<group>"; };
 		8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendRecordCell.m; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		8C617B5A16AD1B0E000FC1DC /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8C80947016C1435C004D5479 /* delete.png */,
 				8C53CF3716AF0BE3003C2BA7 /* Icon-72.png */,
 				8C53CF3816AF0BE3003C2BA7 /* Icon-72@2x.png */,
 				8C53CF3916AF0BE3003C2BA7 /* Icon-Small-50.png */,
@@ -757,6 +760,7 @@
 				8C6C42B416B76E30004FE0F5 /* Bitter-Bold.ttf in Resources */,
 				8C6C42B516B76E30004FE0F5 /* Bitter-Italic.ttf in Resources */,
 				8C6C42B616B76E30004FE0F5 /* Bitter-Regular.ttf in Resources */,
+				8C80947116C1435C004D5479 /* delete.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
