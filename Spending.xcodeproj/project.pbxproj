@@ -28,7 +28,6 @@
 		8C19F69216B1DFBD00CC1E09 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C19F69116B1DFBD00CC1E09 /* Record.m */; };
 		8C53CF0C16AE0062003C2BA7 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0B16AE0062003C2BA7 /* bg.png */; };
 		8C53CF0E16AE0077003C2BA7 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0D16AE0077003C2BA7 /* bg@2x.png */; };
-		8C53CF1016AE07CA003C2BA7 /* search_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF0F16AE07CA003C2BA7 /* search_bar.png */; };
 		8C53CF1216AE0A78003C2BA7 /* tip.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF1116AE0A78003C2BA7 /* tip.png */; };
 		8C53CF1616AECF26003C2BA7 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF1516AECF26003C2BA7 /* add.png */; };
 		8C53CF1816AECFAE003C2BA7 /* regular_button_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C53CF1716AECFAE003C2BA7 /* regular_button_blue.png */; };
@@ -96,6 +95,8 @@
 		8C6C430A16B7B27B004FE0F5 /* NIViewRecycler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C42F616B7B27B004FE0F5 /* NIViewRecycler.m */; };
 		8C6C430B16B7B27B004FE0F5 /* NSString+NimbusCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C42F816B7B27B004FE0F5 /* NSString+NimbusCore.m */; };
 		8C80947116C1435C004D5479 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947016C1435C004D5479 /* delete.png */; };
+		8C80947516C1C86A004D5479 /* search_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947316C1C86A004D5479 /* search_bar@2x.png */; };
+		8C80947916C1C955004D5479 /* search_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947816C1C955004D5479 /* search_bar.png */; };
 		8C930BA316B1EB13007BAC32 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */; };
 		8C930BA616B1EBDD007BAC32 /* SpendRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */; };
 		8C930BF616B2E3F2007BAC32 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BDE16B2E3F2007BAC32 /* PSTCollectionView.m */; };
@@ -161,7 +162,6 @@
 		8C19F69116B1DFBD00CC1E09 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		8C53CF0B16AE0062003C2BA7 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		8C53CF0D16AE0077003C2BA7 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
-		8C53CF0F16AE07CA003C2BA7 /* search_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_bar.png; sourceTree = "<group>"; };
 		8C53CF1116AE0A78003C2BA7 /* tip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tip.png; sourceTree = "<group>"; };
 		8C53CF1516AECF26003C2BA7 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		8C53CF1716AECFAE003C2BA7 /* regular_button_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = regular_button_blue.png; sourceTree = "<group>"; };
@@ -260,6 +260,8 @@
 		8C6C42F716B7B27B004FE0F5 /* NSString+NimbusCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NimbusCore.h"; path = "../../libraries/nimbus/src/core/src/NSString+NimbusCore.h"; sourceTree = "<group>"; };
 		8C6C42F816B7B27B004FE0F5 /* NSString+NimbusCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NimbusCore.m"; path = "../../libraries/nimbus/src/core/src/NSString+NimbusCore.m"; sourceTree = "<group>"; };
 		8C80947016C1435C004D5479 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		8C80947316C1C86A004D5479 /* search_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_bar@2x.png"; sourceTree = "<group>"; };
+		8C80947816C1C955004D5479 /* search_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_bar.png; sourceTree = "<group>"; };
 		8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8C930BA416B1EBDD007BAC32 /* SpendRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendRecordCell.h; sourceTree = "<group>"; };
 		8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendRecordCell.m; sourceTree = "<group>"; };
@@ -425,7 +427,6 @@
 				8C53CF1516AECF26003C2BA7 /* add.png */,
 				8C53CF0D16AE0077003C2BA7 /* bg@2x.png */,
 				8C53CF1116AE0A78003C2BA7 /* tip.png */,
-				8C53CF0F16AE07CA003C2BA7 /* search_bar.png */,
 				8C53CF0B16AE0062003C2BA7 /* bg.png */,
 				8CBCF61716B646E000954671 /* cat_babies.png */,
 				8CBCF61816B646E000954671 /* cat_babies@2x.png */,
@@ -465,6 +466,8 @@
 				8C63899416B0B4F60050A3AF /* list@2x.png */,
 				8C53CF1716AECFAE003C2BA7 /* regular_button_blue.png */,
 				8C63899F16B0BBC10050A3AF /* regular_button_blue@2x.png */,
+				8C80947816C1C955004D5479 /* search_bar.png */,
+				8C80947316C1C86A004D5479 /* search_bar@2x.png */,
 				8C617B6716AD23C1000FC1DC /* setting_icon.png */,
 				8C617B6816AD23C1000FC1DC /* setting_icon@2x.png */,
 				8C63898B16B0A6DC0050A3AF /* star-off.png */,
@@ -706,7 +709,6 @@
 				8CB4CAB116AD9E6A00E5B058 /* cat_general.png in Resources */,
 				8C53CF0C16AE0062003C2BA7 /* bg.png in Resources */,
 				8C53CF0E16AE0077003C2BA7 /* bg@2x.png in Resources */,
-				8C53CF1016AE07CA003C2BA7 /* search_bar.png in Resources */,
 				8C53CF1216AE0A78003C2BA7 /* tip.png in Resources */,
 				8C53CF1616AECF26003C2BA7 /* add.png in Resources */,
 				8C53CF1816AECFAE003C2BA7 /* regular_button_blue.png in Resources */,
@@ -761,6 +763,8 @@
 				8C6C42B516B76E30004FE0F5 /* Bitter-Italic.ttf in Resources */,
 				8C6C42B616B76E30004FE0F5 /* Bitter-Regular.ttf in Resources */,
 				8C80947116C1435C004D5479 /* delete.png in Resources */,
+				8C80947516C1C86A004D5479 /* search_bar@2x.png in Resources */,
+				8C80947916C1C955004D5479 /* search_bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
