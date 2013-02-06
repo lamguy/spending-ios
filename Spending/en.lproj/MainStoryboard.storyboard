@@ -19,20 +19,7 @@
                                 </connections>
                             </searchBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n9L-cS-TTv">
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ash-Uo-uH5" customClass="GraphingViewController">
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="leading" secondItem="n9L-cS-TTv" secondAttribute="leading" type="default" id="VqB-2V-GfX"/>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="trailing" secondItem="n9L-cS-TTv" secondAttribute="trailing" type="default" id="XGh-jz-DXq"/>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="bottom" secondItem="n9L-cS-TTv" secondAttribute="bottom" type="default" id="aRf-1d-Sla"/>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="top" secondItem="n9L-cS-TTv" secondAttribute="top" type="default" id="bRo-0M-Ux3"/>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="centerX" secondItem="n9L-cS-TTv" secondAttribute="centerX" type="default" id="biT-W0-of4"/>
-                                    <constraint firstItem="ash-Uo-uH5" firstAttribute="centerY" secondItem="n9L-cS-TTv" secondAttribute="centerY" type="default" id="doV-qH-gdr"/>
-                                </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgf-bI-g9N">
                                 <subviews>
@@ -416,9 +403,6 @@
         </class>
         <class className="CLLocationManager" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocationManager.h"/>
-        </class>
-        <class className="GraphingViewController" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

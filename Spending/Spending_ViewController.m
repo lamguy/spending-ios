@@ -9,7 +9,9 @@
 #import "Spending_ViewController.h"
 #import "SpendRecordCell.h"
 #import "SpendDate.h"
+#import "GraphViewController.h"
 
+static NSUInteger kNumberOfPages = 3;
 @interface Spending_ViewController ()
 {
     NSMutableArray *arrayOfRecord;
@@ -54,7 +56,8 @@
 @end
 
 @implementation Spending_ViewController
-@synthesize graphScroller;
+@synthesize graphScroller, viewControllers;
+NSInteger week;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -93,6 +96,42 @@
     //init array of all the records need to shown up on tableview
     arrayOfRecord = [[NSMutableArray alloc]init];
     filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfRecord count]];
+    
+    graphScroller.frame = CGRectMake(10, 0, 300, 78);
+    graphScroller.pagingEnabled = YES;
+    graphScroller.contentSize = CGSizeMake(graphScroller.frame.size.width*3, graphScroller.frame.size.height);
+    NSLog(@"%f",graphScroller.frame.size.width);
+    graphScroller.showsHorizontalScrollIndicator = YES;
+    graphScroller.showsVerticalScrollIndicator = NO;
+    graphScroller.scrollsToTop = NO;
+    graphScroller.delegate = self;
+    
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (unsigned i = 0; i < kNumberOfPages+1; i++)
+    {
+		[controllers addObject:[NSNull null]];
+    }
+    viewControllers = controllers;
+    
+    
+    
+    NSDate *date = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
+    week = [components week];
+    
+    selectedWeek = week;
+    
+    NSLog(@"Current week: %d", week);
+    
+    [self loadScrollViewWithWeekNumber:week-1 appendToPage:0];
+    [self loadScrollViewWithWeekNumber:week appendToPage:1];
+    [self loadScrollViewWithWeekNumber:week+1 appendToPage:2];
+    
+    CGRect frame = graphScroller.frame;
+    frame.origin.x = frame.size.width * 1;
+    frame.origin.y = 0;
+    [self moveScrollViewTo:1 animated:NO];
     
     //begin to create database if not existed and load data records
     [self createOrOpenDB];
@@ -181,6 +220,31 @@
             [arrayOfRecord reverse];
         }
     }
+}
+
+-(void)loadScrollViewWithWeekNumber:(int)week appendToPage:(int)page
+{
+    // replace the placeholder if necessary
+    GraphViewController *graph = [[GraphViewController alloc] initWithWeeknumber:week];
+    
+    CGRect frame = graphScroller.frame;
+    frame.origin.x = frame.size.width * page;
+    NSLog(@"index: %d - width: %f - x: %f", page, frame.size.width, frame.origin.x);
+    frame.origin.y = 0;
+    
+    graph.view.frame = frame;
+    
+    [graphScroller addSubview:graph.view];
+}
+
+-(void) moveScrollViewTo:(int)page animated:(BOOL)animated {
+    
+    // update the scroll view to the appropriate page
+    CGRect frame = graphScroller.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    [graphScroller scrollRectToVisible:frame animated:animated];
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -313,6 +377,45 @@
 -(void)viewWillAppear:(BOOL)animated {
     NSLog(@"viewWillAppear called");
     
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender
+{
+    // Switch the indicator when more than 50% of the previous/next page is visible
+    CGFloat pageWidth = graphScroller.frame.size.width;
+    int page = floor((graphScroller.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    currentPage = page;
+    
+    [[graphScroller subviews]
+     makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    // load the visible page and the page on either side of it
+    //(to avoid flashes when the user starts scrolling)
+    [self loadScrollViewWithWeekNumber:selectedWeek-1 appendToPage:0];
+    [self loadScrollViewWithWeekNumber:selectedWeek appendToPage:1];
+    [self loadScrollViewWithWeekNumber:selectedWeek+1 appendToPage:2];
+    
+    NSUInteger count = graphScroller.subviews.count;
+    NSLog(@"items: %d", count);
+    NSLog(@"page %d, selected week: %d", page, selectedWeek);
+}
+
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
+    switch (currentPage) {
+        case 0:
+            selectedWeek -=1;
+            break;
+        case 2:
+            selectedWeek +=1;
+            break;
+        default:
+            break;
+    }
+    
+    [self moveScrollViewTo:1 animated:NO];
 }
 
 #pragma mark Content Filtering

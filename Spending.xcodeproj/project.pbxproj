@@ -98,6 +98,7 @@
 		8C80947516C1C86A004D5479 /* search_bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947316C1C86A004D5479 /* search_bar@2x.png */; };
 		8C80947916C1C955004D5479 /* search_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947816C1C955004D5479 /* search_bar.png */; };
 		8C80947B16C2691A004D5479 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C80947A16C2691A004D5479 /* delete@2x.png */; };
+		8C80947E16C272BC004D5479 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C80947D16C272BC004D5479 /* GraphViewController.m */; };
 		8C930BA316B1EB13007BAC32 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */; };
 		8C930BA616B1EBDD007BAC32 /* SpendRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */; };
 		8C930BF616B2E3F2007BAC32 /* PSTCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C930BDE16B2E3F2007BAC32 /* PSTCollectionView.m */; };
@@ -264,6 +265,8 @@
 		8C80947316C1C86A004D5479 /* search_bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search_bar@2x.png"; sourceTree = "<group>"; };
 		8C80947816C1C955004D5479 /* search_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_bar.png; sourceTree = "<group>"; };
 		8C80947A16C2691A004D5479 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
+		8C80947C16C272BC004D5479 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		8C80947D16C272BC004D5479 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		8C930BA216B1EB13007BAC32 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8C930BA416B1EBDD007BAC32 /* SpendRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpendRecordCell.h; sourceTree = "<group>"; };
 		8C930BA516B1EBDD007BAC32 /* SpendRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpendRecordCell.m; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 				8C930C0316B2FE10007BAC32 /* NumGrid.m */,
 				8CB77E7016BB1B3900D7D5A1 /* SpendDate.h */,
 				8CB77E7116BB1B3900D7D5A1 /* SpendDate.m */,
+				8C80947C16C272BC004D5479 /* GraphViewController.h */,
+				8C80947D16C272BC004D5479 /* GraphViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -823,6 +828,7 @@
 				8C6C430A16B7B27B004FE0F5 /* NIViewRecycler.m in Sources */,
 				8C6C430B16B7B27B004FE0F5 /* NSString+NimbusCore.m in Sources */,
 				8CB77E7216BB1B3A00D7D5A1 /* SpendDate.m in Sources */,
+				8C80947E16C272BC004D5479 /* GraphViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
