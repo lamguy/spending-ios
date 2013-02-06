@@ -374,11 +374,6 @@ NSString *KeyCellIdentifier = @"KeyCell";
 		if (self.catScroller.dragging)
         {
 			[pageControl updateCurrentPageDisplay];
-            
-            if(pageControl.currentPage==1)
-            {
-                [self.catScroller setContentOffset:CGPointMake(310, 0) animated:NO];
-            }
         }
 	}
 }
@@ -386,12 +381,22 @@ NSString *KeyCellIdentifier = @"KeyCell";
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView
 {
     //http://stackoverflow.com/questions/993280/how-to-detect-when-a-uiscrollview-has-finished-scrolling
-    
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    /*if(pageControl.currentPage==1)
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if(pageControl.currentPage==1)
     {
-        [self.catScroller setContentOffset:CGPointMake(300 * pageControl.currentPage + 10, 0) animated:YES];
-    }*/
+        // Setting offset with animation of UIView
+        [UIView animateWithDuration:0.05
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^
+         {
+             [self.catScroller setContentOffset:CGPointMake(300 * pageControl.currentPage + 10, 0)];
+         }
+                         completion:^(BOOL finished){}];
+    }
 }
 
 
