@@ -373,7 +373,12 @@ NSString *KeyCellIdentifier = @"KeyCell";
 		// if we are dragging, we want to update the page control directly during the drag
 		if (self.catScroller.dragging)
         {
-			[pageControl updateCurrentPageDisplay] ;
+			[pageControl updateCurrentPageDisplay];
+            
+            if(pageControl.currentPage==1)
+            {
+                [self.catScroller setContentOffset:CGPointMake(310, 0) animated:NO];
+            }
         }
 	}
 }
@@ -383,10 +388,10 @@ NSString *KeyCellIdentifier = @"KeyCell";
     //http://stackoverflow.com/questions/993280/how-to-detect-when-a-uiscrollview-has-finished-scrolling
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    if(pageControl.currentPage==1)
+    /*if(pageControl.currentPage==1)
     {
         [self.catScroller setContentOffset:CGPointMake(300 * pageControl.currentPage + 10, 0) animated:YES];
-    }
+    }*/
 }
 
 
