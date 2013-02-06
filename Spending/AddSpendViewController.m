@@ -169,7 +169,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
 {
     PSUICollectionViewFlowLayout *layout = [[PSUICollectionViewFlowLayout alloc] init];
     _gridView = [[PSUICollectionView alloc] initWithFrame:[self.buttonGrid bounds] collectionViewLayout:layout];
-    _gridView.frame = CGRectMake(0, 0, self.view.bounds.size.width*numberOfCatPages-30, self.view.bounds.size.height);
+    _gridView.frame = CGRectMake(0, 0, 300*numberOfCatPages + 10, 114);
     _gridView.delegate = self;
     _gridView.dataSource = self;
     _gridView.allowsMultipleSelection = NO;
@@ -179,7 +179,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
     
     // define the scroll view content size and enable paging
     [self.catScroller setDelegate:self];
-	[self.catScroller setContentSize: CGSizeMake(self.view.bounds.size.width * numberOfCatPages, self.buttonGrid.bounds.size.height)] ;
+	[self.catScroller setContentSize: CGSizeMake(300*numberOfCatPages + 10, 114)] ;
     
     // programmatically add the page control
 	pageControl = [[DDPageControl alloc] initWithFrame:CGRectZero] ;
@@ -358,12 +358,11 @@ NSString *KeyCellIdentifier = @"KeyCell";
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    
+    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:0.05];
     
 	CGFloat pageWidth = self.catScroller.bounds.size.width;
-    
-    //[self.catScroller setContentOffset: CGPointMake(self.catScroller.bounds.size.width * pageControl.currentPage, self.catScroller.contentOffset.y) animated: YES] ;
-    
-    NSLog(@"%f", self.catScroller.bounds.size.width);
     float fractionalPage = self.catScroller.contentOffset.x / pageWidth ;
 	NSInteger nearestNumber = lround(fractionalPage) ;
 	
@@ -373,13 +372,21 @@ NSString *KeyCellIdentifier = @"KeyCell";
 		
 		// if we are dragging, we want to update the page control directly during the drag
 		if (self.catScroller.dragging)
+        {
 			[pageControl updateCurrentPageDisplay] ;
+        }
 	}
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)aScrollView
 {
-    self.catScroller.frame = CGRectMake(10,10,self.view.bounds.size.width * pageControl.currentPage,self.catScroller.bounds.size.height);
+    //http://stackoverflow.com/questions/993280/how-to-detect-when-a-uiscrollview-has-finished-scrolling
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    if(pageControl.currentPage==1)
+    {
+        [self.catScroller setContentOffset:CGPointMake(300 * pageControl.currentPage + 10, 0) animated:YES];
+    }
 }
 
 

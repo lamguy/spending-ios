@@ -317,20 +317,20 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="sMw-QQ-R1T" firstAttribute="leading" secondItem="h60-sJ-5B1" secondAttribute="leading" constant="-1" id="2xx-Ln-D2g"/>
                                                         <constraint firstItem="sMw-QQ-R1T" firstAttribute="top" secondItem="h60-sJ-5B1" secondAttribute="top" type="default" id="3VM-Lx-kun"/>
-                                                        <constraint firstItem="sMw-QQ-R1T" firstAttribute="leading" secondItem="h60-sJ-5B1" secondAttribute="leading" type="default" id="DkB-n5-Z9x"/>
+                                                        <constraint firstAttribute="trailing" secondItem="sMw-QQ-R1T" secondAttribute="trailing" constant="1" id="RAW-m5-w1D"/>
                                                         <constraint firstItem="sMw-QQ-R1T" firstAttribute="bottom" secondItem="h60-sJ-5B1" secondAttribute="bottom" type="default" id="kYr-XR-X5O"/>
-                                                        <constraint firstItem="sMw-QQ-R1T" firstAttribute="trailing" secondItem="h60-sJ-5B1" secondAttribute="trailing" type="default" id="v5d-da-ypo"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="h60-sJ-5B1" firstAttribute="centerX" secondItem="Tsv-3B-w1d" secondAttribute="centerX" type="default" id="AVH-uy-4S5"/>
+                                            <constraint firstItem="h60-sJ-5B1" firstAttribute="leading" secondItem="Tsv-3B-w1d" secondAttribute="leading" constant="10" id="CFd-cu-CRw"/>
                                             <constraint firstAttribute="bottom" secondItem="h60-sJ-5B1" secondAttribute="bottom" constant="21" id="Cjm-4T-MkX"/>
-                                            <constraint firstItem="h60-sJ-5B1" firstAttribute="leading" secondItem="Tsv-3B-w1d" secondAttribute="leading" constant="10" id="I8Q-WH-yS3"/>
                                             <constraint firstItem="h60-sJ-5B1" firstAttribute="top" secondItem="Tsv-3B-w1d" secondAttribute="top" constant="10" type="user" id="Q5C-Ne-TLd"/>
-                                            <constraint firstItem="h60-sJ-5B1" firstAttribute="centerX" secondItem="Tsv-3B-w1d" secondAttribute="centerX" type="default" id="jvc-gI-mhO"/>
                                         </constraints>
                                     </tableViewCell>
                                 </cells>
@@ -391,6 +391,57 @@
         <image name="add.png" width="39" height="22"/>
         <image name="cat_general.png" width="27" height="28"/>
     </resources>
+    <classes>
+        <class className="AddSpendViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSpendViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="action" name="doneButtonPressed:"/>
+                <relationship kind="action" name="starPressed:"/>
+                <relationship kind="outlet" name="amount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="buttonGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="catScroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="geoCoder" candidateClass="CLGeocoder"/>
+                <relationship kind="outlet" name="list" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="locationManager" candidateClass="CLLocationManager"/>
+                <relationship kind="outlet" name="name" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="note" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="noteCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="numGrid" candidateClass="UIView"/>
+                <relationship kind="outlet" name="star" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CLGeocoder" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLGeocoder.h"/>
+        </class>
+        <class className="CLLocationManager" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CLLocationManager.h"/>
+        </class>
+        <class className="GraphingViewController" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SpendRecordCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SpendRecordCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="spendAmount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendCat" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="spendLocation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="spendName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="Spending_ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Spending_ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="addNewSpend" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="graphScroller" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="recordTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
