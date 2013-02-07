@@ -358,6 +358,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hOb-pW-N2H">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KME-gC-5hV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="opv-yT-FKj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YK2-gx-3p7">
@@ -369,7 +370,6 @@
                         <segue destination="nCM-BX-eLP" kind="relationship" relationship="rootViewController" id="vdP-h1-h2I"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KME-gC-5hV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="51"/>
         </scene>
@@ -432,6 +432,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Wh-l2-rde"/>
+        <segue reference="oMK-zb-fFw"/>
     </inferredMetricsTieBreakers>
 </document>

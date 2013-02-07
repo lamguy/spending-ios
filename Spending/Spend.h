@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface Spend : NSObject {
-    NSInteger id;
-    NSInteger category_id;
-    NSString *name;
-    NSString *location;
 }
 
 @property (nonatomic, assign) NSInteger id;
