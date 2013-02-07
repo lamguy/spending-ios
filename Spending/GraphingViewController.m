@@ -327,4 +327,9 @@ NSArray *weekdate;
     return [NSArray arrayWithArray:result];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 @end
