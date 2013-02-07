@@ -23,13 +23,7 @@ NSArray *weekdate;
     self = [super initWithFrame:frame];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if(self = [super initWithCoder:aDecoder]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
+        NSLog(@"dadada");
     }
     return self;
 }
