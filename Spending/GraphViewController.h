@@ -7,21 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphingViewController.h"
 #import "sqlite3.h"
 #import "SpendDate.h"
-#define kGraphHeight 56
-#define kDefaultGraphWidth 300
-#define kOffsetX 20
-#define kStepX 46
-#define kGraphBottom 89
-#define kGraphTop 0
-#define kStepY 20
-#define kOffsetY 15
-#define kCircleRadius 3
-
-#define kBarTop 10
-#define kBarWidth 40
-#define kNumberOfBars 7
 
 @interface GraphViewController : UIViewController
 {
@@ -29,5 +17,6 @@
     UILabel *titleA;
 }
 @property (nonatomic, retain) IBOutlet UILabel *titleA;
+@property (nonatomic, strong) IBOutlet GraphingViewController *graphView;
 - (id)initWithWeeknumber:(int)week;
 @end

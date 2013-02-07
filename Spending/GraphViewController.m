@@ -13,8 +13,7 @@
 @end
 
 @implementation GraphViewController
-@synthesize titleA;
-NSInteger week;
+@synthesize titleA, graphView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +40,11 @@ NSInteger week;
     titleA.text = [NSString stringWithFormat:@"Week %d", weekNumber];
     
     [self.view addSubview:titleA];
+    
+    graphView = [[GraphingViewController alloc] init];
+    graphView.frame = CGRectMake(0, 0, 300, 144);
+    graphView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    [self.view addSubview:graphView];
     
 }
 
