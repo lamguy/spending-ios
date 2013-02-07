@@ -191,7 +191,7 @@
         <!--Add Spend View Controller-->
         <scene sceneID="cEl-XU-PcC">
             <objects>
-                <tableViewController storyboardIdentifier="AddSpendViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nCM-BX-eLP" customClass="AddSpendViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="" id="nCM-BX-eLP" customClass="AddSpendViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Cg3-3u-x6R">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -432,6 +432,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="oMK-zb-fFw"/>
+        <segue reference="3Wh-l2-rde"/>
     </inferredMetricsTieBreakers>
 </document>
