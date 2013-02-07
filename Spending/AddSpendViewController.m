@@ -456,6 +456,7 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         [self dismissViewControllerAnimated:YES completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateTableNotification" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataNotification" object:self];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
         }];
     }

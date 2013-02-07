@@ -29,6 +29,7 @@ NSArray *weekdate;
 
 -(id)initWithWeeknumber:(int)week
 {
+    
     weekNumber = week;
     return self;
 }
@@ -46,9 +47,7 @@ NSArray *weekdate;
 }
 
 - (void)loadData
-{
-    
-    
+{    
     NSDate *date = [SpendDate currentDate].selectedDate;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
@@ -85,8 +84,6 @@ NSArray *weekdate;
         [graphView.data addObject:amount];
     }
 }
-
-
 
 -(NSArray*)allDatesInWeek:(int)weekNumber {
     // determine weekday of first day of year:

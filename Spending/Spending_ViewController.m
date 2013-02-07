@@ -358,6 +358,7 @@ NSInteger week;
     if (sqlite3_exec(recordDB, [deleteQuery UTF8String], NULL, NULL, &error)==SQLITE_OK) {
         NSLog(@"Record deleted");
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataNotification" object:self];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
     }
 }
