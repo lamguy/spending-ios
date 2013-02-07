@@ -229,7 +229,6 @@ NSInteger week;
     
     CGRect frame = graphScroller.frame;
     frame.origin.x = frame.size.width * page;
-    NSLog(@"index: %d - width: %f - x: %f", page, frame.size.width, frame.origin.x);
     frame.origin.y = 0;
     
     graph.view.frame = frame;
@@ -374,9 +373,7 @@ NSInteger week;
     [self.view endEditing:YES];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    NSLog(@"viewWillAppear called");
-    
+-(void)viewWillAppear:(BOOL)animated {    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender
@@ -386,6 +383,8 @@ NSInteger week;
     int page = floor((graphScroller.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
     currentPage = page;
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
     
     [[graphScroller subviews]
      makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -396,14 +395,8 @@ NSInteger week;
     [self loadScrollViewWithWeekNumber:selectedWeek appendToPage:1];
     [self loadScrollViewWithWeekNumber:selectedWeek+1 appendToPage:2];
     
-    NSUInteger count = graphScroller.subviews.count;
-    NSLog(@"items: %d", count);
-    NSLog(@"page %d, selected week: %d", page, selectedWeek);
-}
-
-
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
+    NSLog(@"Selected week: %d", selectedWeek);
+    
     switch (currentPage) {
         case 0:
             selectedWeek -=1;

@@ -24,4 +24,7 @@
 
 @interface GraphingViewController : UIView
 
+@property (assign) NSInteger week;
+@property (nonatomic, strong) NSMutableArray *data;
+
 @end

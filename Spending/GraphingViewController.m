@@ -10,22 +10,26 @@
 #import "SpendDate.h"
 
 @implementation GraphingViewController
-sqlite3 *recordDB;
-NSString *dbPathString;
-NSMutableArray *data;
+@synthesize week, data;
 int maxValue = 20000;
 CGRect touchAreas[kNumberOfBars];
-NSInteger week;
 NSArray *weekdate;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        CATiledLayer *tiledLayer = (CATiledLayer *)[self layer];
+        tiledLayer.tileSize = CGSizeMake(512.0f, 512.0f);
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGraphView:) name:@"updateGraphNotification" object:nil];
-        NSLog(@"dadada");
+        data = [[NSMutableArray alloc]init];
     }
     return self;
+}
+
+// Set the layer's class to be CATiledLayer.
++ (Class)layerClass {
+    return [CATiledLayer class];
 }
 
 - (void)drawLineGraphWithContext:(CGContextRef)ctx
@@ -198,42 +202,6 @@ NSArray *weekdate;
 
 - (void)drawRect:(CGRect)rect
 {
-    data = [[NSMutableArray alloc]init];
-    
-    NSDate *date = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
-    week = [components week];
-    weekdate = [self allDatesInWeek:week];
-    
-    sqlite3_stmt *query_stmt;
-    
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docPath = [path objectAtIndex:0];
-    
-    dbPathString = [docPath stringByAppendingPathComponent:@"spending.db"];
-    [data removeAllObjects ];
-    
-    for (int i=0; i<[weekdate count]; i++) {
-        NSNumber *amount = [[NSNumber alloc] initWithInt:0];
-        
-        if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
-            
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"yyyy-MM-dd"];
-            NSString *dateString=[dateFormat stringFromDate:weekdate[i]];
-            
-            NSString *querySQL = [NSString stringWithFormat:@"SELECT SUM(AMOUNT) FROM SPENDS WHERE DATE_ADDED=?"];
-            
-            if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
-                sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
-                while (sqlite3_step(query_stmt)==SQLITE_ROW) {
-                    amount = [NSNumber numberWithInt:sqlite3_column_int(query_stmt, 0)];                    
-                }
-            }
-        }
-        [data addObject:amount];
-    }
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.5);
@@ -292,33 +260,6 @@ NSArray *weekdate;
         NSString *theRange = [NSString stringWithFormat:@"%d", i*100];
         CGContextShowTextAtPoint(context, kOffsetX-20, kGraphBottom - 30 - i * kStepY, [theRange cStringUsingEncoding:NSUTF8StringEncoding], [theRange length]);
     }
-}
-
--(NSArray*)allDatesInWeek:(int)weekNumber {
-    // determine weekday of first day of year:
-    NSCalendar *greg = [[NSCalendar alloc]
-                        initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    comps.day = 1;
-    NSDate *today = [NSDate date];
-    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today  options:0];
-    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
-    comps = [greg components:NSYearCalendarUnit fromDate:[NSDate date]];
-    comps.day = 1;
-    comps.month = 1;
-    comps.hour = 12;
-    NSDate *start = [greg dateFromComponents:comps];
-    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
-    if (weekNumber==1) {
-        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
-    } else {
-        start = [start dateByAddingTimeInterval:kDay*(8-comps.weekday+7*(weekNumber-2))];
-    }
-    NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i<7; i++) {
-        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
-    }
-    return [NSArray arrayWithArray:result];
 }
 
 - (void)dealloc

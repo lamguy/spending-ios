@@ -14,9 +14,7 @@
 @interface GraphViewController : UIViewController
 {
     int weekNumber;
-    UILabel *titleA;
 }
-@property (nonatomic, retain) IBOutlet UILabel *titleA;
-@property (nonatomic, strong) IBOutlet GraphingViewController *graphView;
+@property (nonatomic, retain) IBOutlet GraphingViewController *graphView;
 - (id)initWithWeeknumber:(int)week;
 @end
