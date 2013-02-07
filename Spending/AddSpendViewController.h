@@ -13,7 +13,6 @@
 
 @interface AddSpendViewController : UITableViewController <PSTCollectionViewDataSource, PSTCollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, CLLocationManagerDelegate, UITextViewDelegate>
 {
-    IBOutlet UIScrollView *catScroller;
     DDPageControl *pageControl;
 }
 
