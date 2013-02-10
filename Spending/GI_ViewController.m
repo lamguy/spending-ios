@@ -47,13 +47,38 @@
 @synthesize graphScroller, viewControllers, recordTableView;
 static NSUInteger kNumberOfPages = 3;
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self)
+    {
+        NSLog(@"Initializing Spending ...");
+        //Initialize some data arrays
+        arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_gift.png", @"cat_babies.png", @"cat_pets.png", @"cat_personal.png", @"cat_medical.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_books.png", nil];
+    
+        //init array of all the records need to shown up on tableview
+        arrayOfRecord = [[NSMutableArray alloc]init];
+        filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfRecord count]];
+    
+    
+        //Init database objects
+    
+        path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        docPath = [path objectAtIndex:0];
+        dbPathString = [docPath stringByAppendingPathComponent:@"spending.db"];
+        fileManager = [NSFileManager defaultManager];
+        
+        NSLog(@"Finished Initializing");
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
     
-    NSLog(@"Main view called");
+    NSLog(@"Spending view has been loaded");
     
     //Set new background for regular buttons
     UIImage* RegButtonBlue = [[UIImage imageNamed:@"regular_button_blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(3, 6, 3, 6) resizingMode:UIImageResizingModeStretch];
@@ -61,13 +86,6 @@ static NSUInteger kNumberOfPages = 3;
     [self.addNewSpendButton setBackgroundImage:RegButtonBlue forState:UIControlStateNormal];
     self.addNewSpendButton.titleLabel.shadowColor = [UIColor colorWithRed:(42.0/255.0) green:(123.0/255.0) blue:(190.0/255.0) alpha:1.0];
     self.addNewSpendButton.titleLabel.shadowOffset = CGSizeMake(0, -1.0);
-    
-    
-    //Initialize some data arrays
-    arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_gift.png", @"cat_babies.png", @"cat_pets.png", @"cat_personal.png", @"cat_medical.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_books.png", nil];
-    //init array of all the records need to shown up on tableview
-    arrayOfRecord = [[NSMutableArray alloc]init];
-    filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfRecord count]];
     
     //begin to create database if not existed and load data records
     [self createOrOpenDB];
@@ -77,7 +95,6 @@ static NSUInteger kNumberOfPages = 3;
     graphScroller.frame = CGRectMake(10, 0, 300, 80);
     graphScroller.pagingEnabled = YES;
     graphScroller.contentSize = CGSizeMake(graphScroller.frame.size.width*3, graphScroller.frame.size.height);
-    NSLog(@"graph width:%f height: %f",graphScroller.frame.size.width,graphScroller.frame.size.height);
     graphScroller.showsHorizontalScrollIndicator = YES;
     graphScroller.showsVerticalScrollIndicator = YES;
     graphScroller.scrollsToTop = NO;
@@ -111,14 +128,7 @@ static NSUInteger kNumberOfPages = 3;
 
 -(void)createOrOpenDB
 {
-    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docPath = [path objectAtIndex:0];
-    
-    dbPathString = [docPath stringByAppendingPathComponent:@"spending.db"];
-    
     char *error;
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     if(![fileManager fileExistsAtPath:dbPathString])
     {
         

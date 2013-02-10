@@ -21,6 +21,9 @@
     
     sqlite3 *recordDB;
     NSString *dbPathString;
+    NSArray *path;
+    NSString *docPath;
+    NSFileManager *fileManager;
     
     
     NSArray *arrayOfCatImages;
