@@ -121,10 +121,9 @@ static NSUInteger kNumberOfPages = 3;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if(![fileManager fileExistsAtPath:dbPathString])
     {
-        const char *dbPath = [dbPathString UTF8String];
         
         //create db here
-        if(sqlite3_open(dbPath, &recordDB)==SQLITE_OK)
+        if(sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
         {
             const char *sql_stmt = "CREATE TABLE IF NOT EXISTS SPENDS(ID INTEGER PRIMARY KEY AUTOINCREMENT, CAT_ID INTEGER, NAME TEXT, NOTE TEXT, ADDRESS TEXT, AMOUNT INETEGER, DATE_ADDED TEXT)";
             sqlite3_exec(recordDB, sql_stmt, NULL, NULL, &error);
@@ -138,7 +137,8 @@ static NSUInteger kNumberOfPages = 3;
     
     sqlite3_stmt *query_stmt;
     
-    if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK) {
+    if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
+    {
         [arrayOfRecord removeAllObjects ];
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -347,21 +347,26 @@ static NSUInteger kNumberOfPages = 3;
         
         [arrayOfRecord removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationTop];
+        
+        NSLog(@"record id %d", record.ID);
     }
 }
 
 -(void)deleteRecord:(NSString *)deleteQuery
 {
-    char *error;
-    
-    if (sqlite3_exec(recordDB, [deleteQuery UTF8String], NULL, NULL, &error)==SQLITE_OK) {
-        NSLog(@"Record deleted");
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataNotification" object:self];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
+    if(sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
+    {
+        char *error;
+        if (sqlite3_exec(recordDB, [deleteQuery UTF8String], NULL, NULL, &error)==SQLITE_OK) {
+            NSLog(@"Record deleted");
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadDataNotification" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateGraphNotification" object:self];
+        }
+        sqlite3_close(recordDB);
+        NSLog(@"%s", error);
     }
     
-    NSLog(@"%s", error);
 }
 
 -(void)reloadTableView:(NSNotification *) notification
