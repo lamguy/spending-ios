@@ -11,6 +11,11 @@
 #import "GI_Date.h"
 
 @interface GI_GraphViewController : UIViewController
+{
+    sqlite3 *recordDB;
+    NSString *dbPathString;
+    NSArray *weekdate;
+}
 
 @property (assign) NSInteger week;
 @property (nonatomic, retain) IBOutlet GI_GraphView *graphView;

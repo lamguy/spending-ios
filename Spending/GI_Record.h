@@ -14,4 +14,5 @@
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, strong)NSString *note;
 @property(assign)NSInteger amount;
+@property(nonatomic, strong)NSDate *date_added;
 @end

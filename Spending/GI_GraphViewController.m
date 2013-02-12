@@ -14,9 +14,6 @@
 
 @implementation GI_GraphViewController
 @synthesize week, graphView;
-sqlite3 *recordDB;
-NSString *dbPathString;
-NSArray *weekdate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

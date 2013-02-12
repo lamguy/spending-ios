@@ -54,10 +54,13 @@ static NSUInteger kNumberOfPages = 3;
         NSLog(@"Initializing Spending ...");
         //Initialize some data arrays
         arrayOfCatImages = [[NSArray alloc]initWithObjects:@"cat_general.png", @"cat_shopping.png", @"cat_gas.png", @"cat_restaurant.png", @"cat_computer.png", @"cat_gift.png", @"cat_babies.png", @"cat_pets.png", @"cat_personal.png", @"cat_medical.png", @"cat_housing.png", @"cat_drink.png", @"cat_transit.png", @"cat_movie.png", @"cat_movies.png", @"cat_books.png", nil];
+        
+        
     
         //init array of all the records need to shown up on tableview
+        arrayOfWeeklyRecord = [[NSMutableArray alloc]init];
         arrayOfRecord = [[NSMutableArray alloc]init];
-        filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfRecord count]];
+        filterArrayOfRecord = [NSMutableArray arrayWithCapacity:[arrayOfWeeklyRecord count]];
     
     
         //Init database objects
@@ -107,13 +110,6 @@ static NSUInteger kNumberOfPages = 3;
     }
     viewControllers = controllers;
     
-    NSDate *date = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
-    week = [components week];
-    
-    selectedWeek = week;
-    
     [self loadScrollViewWithWeekNumber:week-1 appendToPage:0];
     [self loadScrollViewWithWeekNumber:week appendToPage:1];
     [self loadScrollViewWithWeekNumber:week+1 appendToPage:2];
@@ -147,24 +143,38 @@ static NSUInteger kNumberOfPages = 3;
     
     sqlite3_stmt *query_stmt;
     
+    NSDate *date = [GI_Date date].selectedDate;
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
+    week = [components week];
+    
+    selectedWeek = week;
+    weekdate = [self allDatesInWeek:week];
+    
     if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
     {
-        [arrayOfRecord removeAllObjects ];
+        [arrayOfWeeklyRecord removeAllObjects];
+        [arrayOfRecord removeAllObjects];
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *dateString=[dateFormat stringFromDate:[GI_Date date].selectedDate];
+        NSString *dateString=[dateFormat stringFromDate:date];
+        fromDate = [dateFormat stringFromDate:weekdate[0]];
+        toDate = [dateFormat stringFromDate:weekdate[6]];
         
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS WHERE DATE_ADDED=?"];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM SPENDS WHERE DATE_ADDED BETWEEN ? AND ?"];
         
         if (sqlite3_prepare(recordDB, [querySQL UTF8String], -1, &query_stmt, NULL)==SQLITE_OK) {
-            sqlite3_bind_text(query_stmt, 1, [dateString UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(query_stmt, 1, [fromDate UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(query_stmt, 2, [toDate UTF8String], -1, SQLITE_TRANSIENT);
             while (sqlite3_step(query_stmt)==SQLITE_ROW) {
                 NSInteger ID=sqlite3_column_int(query_stmt, 0);
                 NSInteger cat_ID=sqlite3_column_int(query_stmt, 1);
                 NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
                 NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
                 NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
+                NSString *date_added_string=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 6)];
+                NSDate *date_added= [dateFormat dateFromString:date_added_string];
                 
                 GI_Record *record = [[GI_Record alloc]init];
                 
@@ -173,16 +183,23 @@ static NSUInteger kNumberOfPages = 3;
                 [record setName:name];
                 [record setNote:note];
                 [record setAmount:[amount intValue]];
+                [record setDate_added:date_added];
                 
-                [arrayOfRecord addObject:record];
+                [arrayOfWeeklyRecord addObject:record];
                 
             }
             
-            //Now we need to reverse the array of our records for better UX
-            [arrayOfRecord reverse];
-            
             sqlite3_finalize(query_stmt);
             sqlite3_close(recordDB);
+            
+            //Now we need to reverse the array of our records for better UX
+            [arrayOfWeeklyRecord reverse];
+            
+            NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[GI_Date date].selectedDate];
+            
+            predicate = [NSPredicate predicateWithFormat:@"SELF.date_added = %@", [gregorian dateFromComponents:components]];
+            arrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfWeeklyRecord filteredArrayUsingPredicate:predicate]];
         }
     }
 }
@@ -288,21 +305,26 @@ static NSUInteger kNumberOfPages = 3;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"EEEE, MMMM d, YYYY"];
     
-    NSString *sectionTitle = [dateFormat stringFromDate:[GI_Date date].selectedDate];
-    NSString *uppercaseSectionTitle = [sectionTitle uppercaseString];
-    
     // Create label with section title
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(0, 7, tableView.bounds.size.width, 12);
     label.textColor = [UIColor colorWithRed:171.0/255.0 green:171.0/255.0 blue:171.0/255.0 alpha:1.0];
     label.font = [UIFont fontWithName:@"Bitter-Regular" size:10];
-    label.text = uppercaseSectionTitle;
     label.backgroundColor = [UIColor clearColor];
     label.layer.shadowOpacity = 1.0;
     label.layer.shadowRadius = 0.0;
     label.layer.shadowColor = [UIColor whiteColor].CGColor;
     label.layer.shadowOffset = CGSizeMake(0.0, 1.0);
     label.textAlignment = NSTextAlignmentCenter;
+    NSString *sectionTitle = [dateFormat stringFromDate:[GI_Date date].selectedDate];
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        sectionTitle = [NSString stringWithFormat:@"%s  \u2014  %s", [fromDate UTF8String], [toDate UTF8String]];
+    }
+    
+    NSString *uppercaseSectionTitle = [sectionTitle uppercaseString];
+    label.text = uppercaseSectionTitle;
     
     [headerView addSubview:label];
     return headerView;
@@ -368,8 +390,8 @@ static NSUInteger kNumberOfPages = 3;
     // Remove all objects from the filtered search array
     [filterArrayOfRecord removeAllObjects];
     // Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@ OR SELF.note contains[c] %@",searchText, searchText];
-    filterArrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfRecord filteredArrayUsingPredicate:predicate]];
+    predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@ OR SELF.note contains[c] %@",searchText, searchText];
+    filterArrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfWeeklyRecord filteredArrayUsingPredicate:predicate]];
 }
 
 #pragma mark - UISearchDisplayController Delegate Methods
@@ -423,6 +445,35 @@ static NSUInteger kNumberOfPages = 3;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+
+-(NSArray*)allDatesInWeek:(int)weekNumber {
+    // determine weekday of first day of year:
+    NSCalendar *greg = [[NSCalendar alloc]
+                        initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    comps.day = 1;
+    NSDate *today = [NSDate date];
+    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today  options:0];
+    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
+    comps = [greg components:NSYearCalendarUnit fromDate:[NSDate date]];
+    comps.day = 1;
+    comps.month = 1;
+    comps.hour = 12;
+    NSDate *start = [greg dateFromComponents:comps];
+    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
+    if (weekNumber==1) {
+        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
+    } else {
+        start = [start dateByAddingTimeInterval:kDay*(8-comps.weekday+7*(weekNumber-2))];
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    for (int i = 0; i<7; i++) {
+        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
+    }
+    return [NSArray arrayWithArray:result];
 }
 
 - (void)dealloc

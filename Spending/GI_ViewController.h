@@ -17,6 +17,9 @@
     int currentPage;
     int selectedWeek;
     int week;
+    NSArray *weekdate;
+    NSString *fromDate;
+    NSString *toDate;
     NSMutableArray *viewControllers;
     
     sqlite3 *recordDB;
@@ -28,8 +31,11 @@
     
     NSArray *arrayOfCatImages;
     NSMutableArray *arrayOfRecord;
+    NSMutableArray *arrayOfWeeklyRecord;
     NSMutableArray *filterArrayOfRecord;
     NSMutableArray *reversed_arrayOfRecord;
+    
+    NSPredicate *predicate;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *graphScroller;
