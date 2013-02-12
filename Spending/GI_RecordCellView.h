@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GI_RecordCellView : UITableViewCell
+@property (strong, nonatomic) IBOutlet UIView *recordCatView;
 @property (strong, nonatomic) IBOutlet UIImageView *recordCat;
 @property (strong, nonatomic) IBOutlet UILabel *recordName;
 @property (strong, nonatomic) IBOutlet UILabel *recordNote;

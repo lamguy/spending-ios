@@ -23,7 +23,7 @@
                                 </connections>
                             </searchBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5R1-vN-BkG"/>
-                            <button opaque="NO" autoresizesSubviews="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFm-3F-ZcM">
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oFm-3F-ZcM">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="QrV-WB-BJV"/>
                                     <constraint firstAttribute="height" constant="51" id="nXb-l5-tpQ"/>
@@ -61,12 +61,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N4c-gV-ibg">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="tb6-iZ-5kf"/>
-                                                        <constraint firstAttribute="width" constant="28" id="uvb-Hk-yg9"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LIA-Ok-Bnc">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="185" id="rrA-Vr-sGm"/>
@@ -92,24 +86,42 @@
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R67-xU-CPa">
+                                                    <subviews>
+                                                        <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="N4c-gV-ibg">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="28" id="NMD-DR-f8S"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="N4c-gV-ibg" firstAttribute="leading" secondItem="R67-xU-CPa" secondAttribute="leading" type="default" id="9FQ-YK-gqK"/>
+                                                        <constraint firstItem="N4c-gV-ibg" firstAttribute="top" secondItem="R67-xU-CPa" secondAttribute="top" type="default" id="gzP-S0-VAA"/>
+                                                        <constraint firstItem="N4c-gV-ibg" firstAttribute="trailing" secondItem="R67-xU-CPa" secondAttribute="trailing" type="default" id="zdF-Dh-gIt"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="N4c-gV-ibg" firstAttribute="centerY" secondItem="b0v-MV-WJW" secondAttribute="centerY" type="default" id="5bA-9e-1el"/>
-                                            <constraint firstItem="N4c-gV-ibg" firstAttribute="leading" secondItem="b0v-MV-WJW" secondAttribute="leading" constant="10" type="user" id="7pC-JC-7Vp"/>
+                                            <constraint firstItem="QaB-zD-rSW" firstAttribute="leading" secondItem="R67-xU-CPa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="D3c-G6-p2h"/>
                                             <constraint firstItem="yQd-vz-yb4" firstAttribute="top" secondItem="b0v-MV-WJW" secondAttribute="top" constant="11" id="I5b-Yr-JMh"/>
+                                            <constraint firstItem="R67-xU-CPa" firstAttribute="leading" secondItem="b0v-MV-WJW" secondAttribute="leading" constant="10" id="Ln9-5Z-UBC"/>
+                                            <constraint firstItem="R67-xU-CPa" firstAttribute="centerY" secondItem="b0v-MV-WJW" secondAttribute="centerY" type="default" id="Ndy-st-ZQB"/>
+                                            <constraint firstItem="LIA-Ok-Bnc" firstAttribute="leading" secondItem="R67-xU-CPa" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Nxb-mW-HlJ"/>
                                             <constraint firstItem="yQd-vz-yb4" firstAttribute="leading" secondItem="QaB-zD-rSW" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Qir-2k-CGX"/>
-                                            <constraint firstItem="LIA-Ok-Bnc" firstAttribute="leading" secondItem="N4c-gV-ibg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Sl1-xS-xEv"/>
+                                            <constraint firstAttribute="trailing" secondItem="R67-xU-CPa" secondAttribute="trailing" constant="282" id="YGe-YD-VgF"/>
                                             <constraint firstItem="LIA-Ok-Bnc" firstAttribute="top" secondItem="b0v-MV-WJW" secondAttribute="top" constant="5" type="user" id="kWW-US-7pA"/>
+                                            <constraint firstItem="R67-xU-CPa" firstAttribute="top" secondItem="b0v-MV-WJW" secondAttribute="top" constant="8" id="lm7-pq-0R4"/>
                                             <constraint firstItem="yQd-vz-yb4" firstAttribute="leading" secondItem="LIA-Ok-Bnc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="myz-Sv-pJb"/>
                                             <constraint firstAttribute="bottom" secondItem="LIA-Ok-Bnc" secondAttribute="bottom" constant="20" type="default" id="oPO-Hb-wFN"/>
-                                            <constraint firstItem="QaB-zD-rSW" firstAttribute="leading" secondItem="N4c-gV-ibg" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="oVb-Hc-vh5"/>
                                             <constraint firstItem="QaB-zD-rSW" firstAttribute="top" secondItem="b0v-MV-WJW" secondAttribute="top" constant="20" type="default" id="tH1-8C-lX6"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="recordAmount" destination="yQd-vz-yb4" id="AY2-dT-eTO"/>
                                             <outlet property="recordCat" destination="N4c-gV-ibg" id="jbV-aF-85X"/>
+                                            <outlet property="recordCatView" destination="R67-xU-CPa" id="RcI-F6-axU"/>
                                             <outlet property="recordName" destination="LIA-Ok-Bnc" id="dGQ-2I-dbr"/>
                                             <outlet property="recordNote" destination="QaB-zD-rSW" id="kHR-Xa-DNr"/>
                                         </connections>
@@ -374,6 +386,7 @@
             <relationships>
                 <relationship kind="outlet" name="recordAmount" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="recordCat" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="recordCatView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="recordName" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="recordNote" candidateClass="UILabel"/>
             </relationships>

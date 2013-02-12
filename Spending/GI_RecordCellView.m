@@ -9,6 +9,7 @@
 #import "GI_RecordCellView.h"
 
 @implementation GI_RecordCellView
+@synthesize recordCatView, recordCat;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,6 +19,16 @@
     }
     return self;
 }
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super initWithCoder:decoder];
+    if (self)
+    {
+        
+    }
+    return self;
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
