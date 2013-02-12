@@ -13,6 +13,7 @@
 @property(assign)NSInteger cat_id;
 @property(nonatomic, strong)NSString *name;
 @property(nonatomic, strong)NSString *note;
+@property(nonatomic, strong)NSString *address;
 @property(assign)NSInteger amount;
 @property(nonatomic, strong)NSDate *date_added;
 @end

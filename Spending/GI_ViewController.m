@@ -172,6 +172,7 @@ static NSUInteger kNumberOfPages = 3;
                 NSInteger cat_ID=sqlite3_column_int(query_stmt, 1);
                 NSString *name=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 2)];
                 NSString *note=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 3)];
+                NSString *address=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 4)];
                 NSString *amount=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 5)];
                 NSString *date_added_string=[[NSString alloc]initWithUTF8String:(const char *)sqlite3_column_text(query_stmt, 6)];
                 NSDate *date_added= [dateFormat dateFromString:date_added_string];
@@ -182,6 +183,7 @@ static NSUInteger kNumberOfPages = 3;
                 [record setCat_id:cat_ID];
                 [record setName:name];
                 [record setNote:note];
+                [record setAddress:address];
                 [record setAmount:[amount intValue]];
                 [record setDate_added:date_added];
                 
@@ -390,7 +392,7 @@ static NSUInteger kNumberOfPages = 3;
     // Remove all objects from the filtered search array
     [filterArrayOfRecord removeAllObjects];
     // Filter the array using NSPredicate
-    predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@ OR SELF.note contains[c] %@",searchText, searchText];
+    predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@ OR SELF.note contains[c] %@ OR SELF.address contains[c] %@",searchText, searchText, searchText];
     filterArrayOfRecord = [NSMutableArray arrayWithArray:[arrayOfWeeklyRecord filteredArrayUsingPredicate:predicate]];
 }
 
