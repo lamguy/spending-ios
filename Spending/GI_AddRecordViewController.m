@@ -556,7 +556,6 @@ NSString *KeyCellIdentifier = @"KeyCell";
 - (void)numTapped:(UITapGestureRecognizer *)tap
 {
     if (UIGestureRecognizerStateEnded == tap.state) {
-        NSLog(@"tapped");
         
         GI_NumKeyCell *cell = (GI_NumKeyCell *)tap.view;
         [cell setSelected:YES];
@@ -564,13 +563,11 @@ NSString *KeyCellIdentifier = @"KeyCell";
         
         if([cell.key.text isEqualToString:[NSString stringWithFormat:@"" ]])
         {
-            NSLog(@"tapped delete");
             tempAmount = tempAmount/10;
         }
         else if([cell.key.text isEqualToString:[NSString stringWithFormat:@"C" ]])
         {
             tempAmount = 0.00;
-            NSLog(@"tapped C");
         }
         else
         {
