@@ -124,6 +124,7 @@
                                             <outlet property="recordCatView" destination="R67-xU-CPa" id="RcI-F6-axU"/>
                                             <outlet property="recordName" destination="LIA-Ok-Bnc" id="dGQ-2I-dbr"/>
                                             <outlet property="recordNote" destination="QaB-zD-rSW" id="kHR-Xa-DNr"/>
+                                            <segue destination="roB-tC-HNZ" kind="modal" id="ufU-j2-ngb"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -334,7 +335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="owh-nI-rDE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="983" y="91"/>
+            <point key="canvasLocation" x="998" y="91"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Wl-hR-aMV">
@@ -408,4 +409,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ufU-j2-ngb"/>
+    </inferredMetricsTieBreakers>
 </document>
