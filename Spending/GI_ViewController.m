@@ -149,7 +149,7 @@ static NSUInteger kNumberOfPages = 3;
     week = [components week];
     
     selectedWeek = week;
-    weekdate = [self allDatesInWeek:week];
+    weekdate = [self allDatesInWeek:selectedWeek];
     
     if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
     {
@@ -158,7 +158,6 @@ static NSUInteger kNumberOfPages = 3;
         
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *dateString=[dateFormat stringFromDate:date];
         fromDate = [dateFormat stringFromDate:weekdate[0]];
         toDate = [dateFormat stringFromDate:weekdate[6]];
         
