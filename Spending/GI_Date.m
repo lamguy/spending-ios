@@ -9,7 +9,7 @@
 #import "GI_Date.h"
 
 @implementation GI_Date
-@synthesize selectedDate;
+@synthesize selectedDate, selectedWeek;
 
 static GI_Date *date = nil;
 
@@ -33,6 +33,21 @@ static GI_Date *date = nil;
 		}
 	}
 	return nil;
+}
+
++(BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)fromDate andDate:(NSDate*)toDate
+{
+    if([date compare:fromDate] == NSOrderedAscending)
+    {
+        return NO;
+    }
+    
+    if ([date compare:toDate] == NSOrderedDescending)
+    {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (id)copyWithZone:(NSZone *)zone {

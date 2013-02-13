@@ -147,9 +147,11 @@ static NSUInteger kNumberOfPages = 3;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:NSWeekCalendarUnit fromDate:date];
     week = [components week];
+    weekdate = [self allDatesInWeek:week];
     
-    selectedWeek = week;
-    weekdate = [self allDatesInWeek:selectedWeek];
+    [GI_Date date].selectedWeek = week;
+    
+    NSLog(@"Scrolled %d", [GI_Date date].selectedWeek);
     
     if (sqlite3_open([dbPathString UTF8String], &recordDB)==SQLITE_OK)
     {
@@ -251,20 +253,20 @@ static NSUInteger kNumberOfPages = 3;
     
     // load the visible page and the page on either side of it
     //(to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithWeekNumber:selectedWeek-1 appendToPage:0];
-    [self loadScrollViewWithWeekNumber:selectedWeek appendToPage:1];
-    [self loadScrollViewWithWeekNumber:selectedWeek+1 appendToPage:2];
+    [self loadScrollViewWithWeekNumber:[GI_Date date].selectedWeek-1 appendToPage:0];
+    [self loadScrollViewWithWeekNumber:[GI_Date date].selectedWeek appendToPage:1];
+    [self loadScrollViewWithWeekNumber:[GI_Date date].selectedWeek+1 appendToPage:2];
     
-    NSLog(@"Selected week: %d", selectedWeek);
+    NSLog(@"Selected week: %d", [GI_Date date].selectedWeek);
 }
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
     
     switch (currentPage) {
         case 0:
-            selectedWeek -=1;
+            [GI_Date date].selectedWeek -=1;
             break;
         case 2:
-            selectedWeek +=1;
+            [GI_Date date].selectedWeek +=1;
             break;
         default:
             break;
@@ -447,7 +449,6 @@ static NSUInteger kNumberOfPages = 3;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 -(NSArray*)allDatesInWeek:(int)weekNumber {

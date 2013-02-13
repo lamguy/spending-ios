@@ -11,9 +11,11 @@
 @interface GI_Date : NSObject
 {
     NSDate *selectedDate;
+    NSInteger selectedWeek;
 }
 
 @property(nonatomic, retain) NSDate *selectedDate;
+@property(assign, readwrite) NSInteger selectedWeek;
 + (GI_Date*)date;
-
++(BOOL)date:(NSDate*)date isBetweenDate:(NSDate*)fromDate andDate:(NSDate*)toDate;
 @end

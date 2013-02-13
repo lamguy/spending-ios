@@ -15,7 +15,6 @@
 @interface GI_ViewController : UIViewController<UIAccelerometerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 {
     int currentPage;
-    int selectedWeek;
     int week;
     NSArray *weekdate;
     NSString *fromDate;
@@ -42,4 +41,5 @@
 @property (nonatomic, retain) NSMutableArray *viewControllers;
 @property (strong, nonatomic) IBOutlet UITableView *recordTableView;
 @property (strong, nonatomic) IBOutlet UIButton *addNewSpendButton;
+
 @end
